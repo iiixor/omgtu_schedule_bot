@@ -14,20 +14,20 @@ for i in range(1,1000):
     # block = soup.find('span', class_ = 'objectBox objectBox-string')
     responce=responce.split(',')
     for line in responce:
-        if '"group"' in line:
-            line = line.replace('"','')
-            line = line.replace('group:','')
-            all_groups.append(f'{line} : {i}')
-            all_groups = list(set(all_groups))
-            print(line)
-            print(i)
-
-
+        if '"subGroup"' in line:
+            if 'null' not in line:
+                line = line.replace('"','')
+                line = line.replace('group:','')
+                line = line.replace('\/','/')
+                all_groups.append(f'{line} : {i}')
+                all_groups = list(set(all_groups))
+                print(line)
+                print(i)
 print()
 
 sum = 0
 
-with open('all_groups.txt','w') as f:
+with open('all_groups_2.txt','w') as f:
     for line in all_groups:
         if 'null' in line:
             continue

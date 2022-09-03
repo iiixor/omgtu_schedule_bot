@@ -22,6 +22,6 @@ def find_teacher(name):
                     f'<b>Ссылка</b>: {line[1]}'
                     ]
                     text = '\n'.join(text)
-                    print(text)
+                    # print(text)
                     return text
 find_teacher('Панин.Ю.Н')

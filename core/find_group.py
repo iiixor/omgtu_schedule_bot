@@ -33,8 +33,14 @@ def find_group(group, date):
 
     count_teacher = 0
     count_lessons = 0
+    sub_group = ''
 
-
+    if '/' in group:
+        sub_group = group
+        group = group.split('/')
+        group = group[0]
+        # print(group)
+        # print(sub_group)
     with open('all_groups.txt', 'r') as file:
         all_groups = file.readlines()
     for line in all_groups:
@@ -42,7 +48,6 @@ def find_group(group, date):
         if group.upper() in line:
             line = line.split(' : ')
             link = f"https://rasp.omgtu.ru/api/schedule/group/{line[1]}?start={date}&finish={date}&lng=2"
-            print(link)
             responce = requests.get(link).text
             soup = BeautifulSoup(responce, 'lxml')
             for line_2 in responce.split(','):
@@ -116,15 +121,42 @@ def find_group(group, date):
                     subGroup = subGroup.replace('{','')
                     subGroup = subGroup.replace('[','')
                     subGroup = subGroup.replace('\\/','/')
-                    if 'null' in subGroup:
-                        subGroup = group
-                    discipline_dict['subGroup'].append(subGroup)
-                    continue
+                    if sub_group != '':
+                        if 'null' in subGroup:
+                            subGroup = group
+                            discipline_dict['subGroup'].append(subGroup)
+                            continue
+                        if sub_group in subGroup:
+                            discipline_dict['subGroup'].append(subGroup)
+                            continue
+                        else:
+                            discipline_dict['lecturer_title'].remove(lecturer_title)
+                            discipline_dict['kindOfWork'].remove(kindOfWork)
+                            discipline_dict['disciplines'].remove(discipline)
+                            discipline_dict['count_lessons'].remove(count_lessons)
+                            discipline_dict['beginLesson'].remove(beginLesson)
+                            discipline_dict['endLesson'].remove(endLesson)
+                            discipline_dict['dayOfWeekString'].remove(dayOfWeekString)
+                            discipline_dict['building'].remove(building)
+                            discipline_dict['auditorium'].remove(auditorium)
+                    else:
+                        if 'null' in subGroup:
+                            subGroup = group
+                        discipline_dict['subGroup'].append(subGroup)
+                        continue
+
+                    # discipline_dict['subGroup'].append(subGroup)
+                    # continue
+            break
 
 
 
-
+    # print(discipline_dict['subGroup'])
+    # for line in discipline_dict['subGroup']:
+    #     if sub_group == line or group == line:
+    #         print(line)
+    #
     for line in discipline_dict.items():
         print(line)
 
-find_group('ПИ-202',"2022.09.02")
+find_group('ПИ-202/2',"2022.09.02")
