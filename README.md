@@ -1,2 +1,2 @@
-# numero_bot
-Repository of numero_bot
+# omgtu_schedule_bot
+Repository of omgtu_schedule_bot
