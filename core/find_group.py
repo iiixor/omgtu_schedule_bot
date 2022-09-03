@@ -156,7 +156,29 @@ def find_group(group, date):
     #     if sub_group == line or group == line:
     #         print(line)
     #
-    for line in discipline_dict.items():
-        print(line)
+    print()
+    for i in range(len(discipline_dict['disciplines'])):
+        # print(discipline_dict['disciplines'][i])
+        disciplines = discipline_dict['disciplines'][i]
+        kindOfWork = discipline_dict['kindOfWork'][i]
+        beginLesson = discipline_dict['beginLesson'][i]
+        endLesson = discipline_dict['endLesson'][i]
+        lecturer_title = discipline_dict['lecturer_title'][i]
+        building = discipline_dict['building'][i]
+        auditorium = discipline_dict['auditorium'][i]
+        count_lessons = discipline_dict['count_lessons'][i]
 
-find_group('ПИ-202/2',"2022.09.02")
+
+
+        text = [
+        f'<b>Предмет</b>: ({kindOfWork}) {disciplines}',
+        f'<b>Время занятия</b>: {beginLesson} - {endLesson}',
+        f'<b>Преподатель</b>: {lecturer_title}',
+        f'<b>Корпус</b>: {building}',
+        f'<b>Аудитория:</b> {auditorium}',
+        ]
+
+        print('\n'.join(text))
+        print()
+
+find_group('ПИ-202/2',"2022.09.05")

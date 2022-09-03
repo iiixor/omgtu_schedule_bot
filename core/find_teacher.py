@@ -20,21 +20,23 @@ def find_teacher(name):
                     if name[2].upper() in line_ziped[2].upper():
                         line = line.split(' : ')
                         text = [
-                        f'<b>Имя</b>: {line[0]}',
-                        f'<b>Ссылка</b>: {line[1]}'
+                        '\n'
+                        f'  <b>Имя</b>: {line[0]}',
+                        f'  <b>Ссылка</b>: {line[1]}'
                         ]
                         text = '\n'.join(text)
-                        print(text)
+                        # print(text)
                         return text
         else:
             if name.upper() == line_ziped[0].upper():
                 line = line.split(' : ')
                 text = [
-                f'<b>Имя</b>: {line[0]}',
-                f'<b>Ссылка</b>: {line[1]}'
+                '\n',
+                f'  <b>Имя</b>: {line[0]}',
+                f'  <b>Ссылка</b>: {line[1]}'
                 ]
                 text = '\n'.join(text)
-                print(text)
+                # print(text)
                 return text
 
 
