@@ -14,7 +14,6 @@ async def mmm(message:types.Message):
     ]
     await message.answer("\n".join(text), reply_markup=Raspisanie)
 
-
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
 async def ponedelnik(call:CallbackQuery):
     await call.message.answer(text = "Понедельник верхней недели")
