@@ -12,7 +12,7 @@ def format_dayofweek(str):
     }
     return days[str]
 
-def find_group(group, date):
+def find_group(group, date, choice):
     from find_teacher import find_teacher
     import requests
     import fake_useragent
@@ -156,18 +156,24 @@ def find_group(group, date):
     #     if sub_group == line or group == line:
     #         print(line)
     #
-    print()
+
     for i in range(len(discipline_dict['disciplines'])):
-        # print(discipline_dict['disciplines'][i])
         disciplines = discipline_dict['disciplines'][i]
         kindOfWork = discipline_dict['kindOfWork'][i]
         beginLesson = discipline_dict['beginLesson'][i]
         endLesson = discipline_dict['endLesson'][i]
-        lecturer_title = discipline_dict['lecturer_title'][i]
-        building = discipline_dict['building'][i]
-        auditorium = discipline_dict['auditorium'][i]
-        count_lessons = discipline_dict['count_lessons'][i]
-
+        if choice:
+            # print(discipline_dict['disciplines'][i])
+            lecturer_title = discipline_dict['lecturer_title'][i]
+            building = discipline_dict['building'][i]
+            auditorium = discipline_dict['auditorium'][i]
+            count_lessons = discipline_dict['count_lessons'][i]
+        else:
+            lecturer_title = 'Недосутпно в беслатной версии'
+            lecturer_title = 'Недосутпно в беслатной версии'
+            building = 'Недосутпно в беслатной версии'
+            auditorium = 'Недосутпно в беслатной версии'
+            count_lessons = 'Недосутпно в беслатной версии'
 
 
         text = [
@@ -181,4 +187,5 @@ def find_group(group, date):
         print('\n'.join(text))
         print()
 
-find_group('ПИ-202/2',"2022.09.05")
+
+find_group('ПИ-202/2',"2022.09.05", False)
