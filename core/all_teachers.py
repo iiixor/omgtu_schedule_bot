@@ -42,7 +42,7 @@ all_teachers_list = list(set(all_teachers_list))
 #
 # sum = 0
 #
-with open('all_teachers.txt','w') as f:
+with open('core/all_teachers.txt','w') as f:
     for line in all_teachers_list:
         f.write(f'{line}\n')
         print(f'{line}')

@@ -8,7 +8,7 @@ def find_teacher(name):
         name = name.split()
         # print(name)
 
-    with open('all_teachers.txt', 'r') as file:
+    with open('core/all_teachers.txt', 'r') as file:
         all_groups = file.readlines()
     for line in all_groups:
         line = line.replace('\n','')
@@ -38,6 +38,6 @@ def find_teacher(name):
                 text = '\n'.join(text)
                 # print(text)
                 return text
+    return f'<b>Преподатель с такой фамилией не найден!</b>\nПопробуйте еще раз'
 
-
-find_teacher('Панин')
+find_teacher('gdfgdfg')

@@ -41,7 +41,7 @@ def find_group(group, date, choice):
         group = group[0]
         # print(group)
         # print(sub_group)
-    with open('all_groups.txt', 'r') as file:
+    with open('core/all_groups.txt', 'r') as file:
         all_groups = file.readlines()
     for line in all_groups:
         line = line.replace('\n','')

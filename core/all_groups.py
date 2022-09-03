@@ -27,7 +27,7 @@ print()
 
 sum = 0
 
-with open('all_groups_2.txt','w') as f:
+with open('core/all_groups_2.txt','w') as f:
     for line in all_groups:
         if 'null' in line:
             continue
