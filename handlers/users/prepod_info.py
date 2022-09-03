@@ -13,7 +13,10 @@ from keyboards.default.menu import menu
 
 @dp.message_handler(text=f'Получить данные о преподавателе')
 async def prep(message:types.Message):
-    await message.answer('pars chel-prepod', reply_markup=menu)
-    
+    await message.answer('Поиск преподавателя', reply_markup=menu)
+
+@dp.callback_query_handler(prepod_callback.filter(fio = 'fioo'))
+async def prepod(call:CallbackQuery):
+    await call.message.answer(text ='Введите номер группы:')    
     
 
