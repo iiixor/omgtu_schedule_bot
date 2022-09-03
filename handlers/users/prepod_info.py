@@ -10,20 +10,41 @@ from keyboards.default.menu import *
 from keyboards.inline.subscribe_inline_button import *
 from data.config import admins
 from keyboards.default.menu import menu
-# from core import *
+
+# из core импортируем файл find_teacher
+
 from core.find_teacher import *
 
 @dp.message_handler(text=f'Получить данные о преподавателе')
 async def prep(message:types.Message):
     await message.answer('Введите фамилию преподавателя', reply_markup=menu)
 
+#@dp.message_handler() хавает любой месседж без филтрации,
+# поэтому с ним надо поаккуратнее
+
 @dp.message_handler()
 async def prep(message:types.Message):
+
+    # в переменную surmane присваиваем то, что отправил пользователь
+
     surmane = message.text
+
+    # вызывает метод find_teacher() из файла find_teacher.py
+    # в качестве аругмента передаем фамилию преподавателя, которую
+    # ввел пользователь
+
+    # результат записывает в text
+
     text = find_teacher(surmane)
+
+    # форматируем ответ
+
     if '  ' in text:
         text = text.replace('  ','')
-    print(text)
+    # print(text)
+
+    # вводим результат
+
     await message.answer(text)
 
 
