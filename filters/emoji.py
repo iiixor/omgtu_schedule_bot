@@ -1,0 +1,15 @@
+emoji_waving_hand = u"\U0001F44B"   # Махающая рука
+emoji_information = u"\u2139\uFE0F" # Буква i
+emoji_star = u"\u2B50\uFE0F"        # Звезда
+emoji_phone = u"\U0001F4DE"         # u"\U0001F4DE"
+emoji_robot = u"\U0001F916"         # Робот
+emoji_statistics = u"\U0001F4CA"    # Статистика
+emoji_ruflag = u"\U0001F1F7\U0001F1FA"            # русский флаг
+emoji_engflag = u"\U0001F1EC\U0001F1E7"           # Флаг США
+emoji_abacus = u"\U0001F9EE"        # Счёты
+emoji_cat = u"\U0001F638"           # Кот
+emoji_chain = u"\U0001F517"         # Цепь
+emoji_questionmark = u"\u2754"      # Вопросительный знак
+emoji_list = u"\U0001F4CB"          # Лист
+emoji_paper_pen = u"\U0001F4DD"     # Лист с карандашом
+emoji_notebook = u"\U0001F468\u200D\U0001F4BB" #чЕЛ С НОУТОМ

@@ -1,0 +1,9 @@
+aiogram
+aiohttp
+aioredis
+python-dotenv
+requests
+bs4
+lxml
+fake-useragent
+grequests

@@ -1,0 +1,26 @@
+этот способ проще имхо
+
+Жирный текст
+"<b>Жирный текст</b>"
+Курсив
+"<i>курсив</i>"
+Подчеркнутый текст
+"<u>Подчеркнутый текст</u>"
+Зачеркнутый текст
+"<s>Зачеркнутый текст</s>"
+Моноширинный текста
+"<pre>текст</pre>"       Каждое форматирование с новой строки
+"<code>текст</code>"     Прямо внутри текста
+Гиперссылка
+<a href = 'https://delpy.bot'> наш сайт(текст поверх ссылки)</a>
+
+
+
+from aiogram.utils.markdown import hbold, hcode, hitalic, hunderline, hstrikethrough, hlink
+
+hbold("TEXTTEXT")  hlink("text","https://yandex.ru")
+@dp.message_handler(Command("parse_mode_html"))
+async def show_parse_mode(message: types.Message):
+    await message.answer(html_text, parse_mode=types.ParseMode.HTML)
+
+\u2b50\ufe0f
