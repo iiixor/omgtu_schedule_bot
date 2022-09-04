@@ -19,7 +19,7 @@ from core.find_teacher import *
 async def prep(message:types.Message):
     await message.answer('Введите фамилию преподавателя', reply_markup=menu)
 
-#@dp.message_handler() хавает любой месседж без филтрации,
+#@dp.message_handler() хавает любой месседж без филтрации,  
 # поэтому с ним надо поаккуратнее
 
 @dp.message_handler()
