@@ -192,12 +192,12 @@ def get_teacher_schedule(name, date, choice):
 
         ]
 
-        print('\n'.join(text))
-        print()
+        # print('\n'.join(text))
+        # print()
         return text
 
 
 
 
 # find_group('ПИ-202/2',"2022.09.05", False)
-get_teacher_schedule('Панин','2022.09.05', True)
+# get_teacher_schedule('Панин','2022.09.05', True)

@@ -41,7 +41,7 @@ def find_group(group, date, choice):
         group = group[0]
         # print(group)
         # print(sub_group)
-    with open('core/all_groups.txt', 'r') as file:
+    with open('all_groups.txt', 'r') as file:
         all_groups = file.readlines()
     for line in all_groups:
         line = line.replace('\n','')
@@ -156,28 +156,38 @@ def find_group(group, date, choice):
     #     if sub_group == line or group == line:
     #         print(line)
     #
+    if len(discipline_dict['disciplines']) == 0:
+        print('<b> Пар нет </b>')
+        return '<b> Пар нет </b>'
 
     for i in range(len(discipline_dict['disciplines'])):
         disciplines = discipline_dict['disciplines'][i]
         kindOfWork = discipline_dict['kindOfWork'][i]
         beginLesson = discipline_dict['beginLesson'][i]
         endLesson = discipline_dict['endLesson'][i]
+
+        if '08:00' in beginLesson:
+            count_lessons = '1'
+        if '09:40' in beginLesson:
+            count_lessons = '2'
+        if '11:35' in beginLesson:
+            count_lessons = '3'
+        if '13:15' in beginLesson:
+            count_lessons = '4'
+
         if choice:
             # print(discipline_dict['disciplines'][i])
             lecturer_title = discipline_dict['lecturer_title'][i]
             building = discipline_dict['building'][i]
             auditorium = discipline_dict['auditorium'][i]
-            count_lessons = discipline_dict['count_lessons'][i]
         else:
-            lecturer_title = 'Недосутпно в беслатной версии'
             lecturer_title = 'Недосутпно в беслатной версии'
             building = 'Недосутпно в беслатной версии'
             auditorium = 'Недосутпно в беслатной версии'
-            count_lessons = 'Недосутпно в беслатной версии'
 
 
         text = [
-        f'<b>Предмет</b>: ({kindOfWork}) {disciplines}',
+        f'<b>Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
         f'<b>Время занятия</b>: {beginLesson} - {endLesson}',
         f'<b>Преподатель</b>: {lecturer_title}',
         f'<b>Корпус</b>: {building}',
@@ -188,4 +198,4 @@ def find_group(group, date, choice):
         print()
 
 
-find_group('ПИ-202/2',"2022.09.05", False)
+find_group('ПИ-202/2',"2022.09.05", True)
