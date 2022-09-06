@@ -1,13 +1,13 @@
 from aiogram import types
 from loader import dp,bot
 from aiogram.types import CallbackQuery
-from keyboards.inline.subscribe_inline_button import *
+from keyboards.inline.inline_subscribe import *
 
 
-from keyboards.inline.raspisanie_dnya import *
+from keyboards.inline.inline_days_of_week import *
 from keyboards.inline.callback_datas import *
 
-@dp.message_handler(text=f'Выбор дня')
+@dp.message_handler(text=f'Расписание')
 async def mmm(message:types.Message):
     text = [
         'Расписание на две недели'
@@ -25,7 +25,7 @@ async def ponedelnik(call:CallbackQuery):
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '3'))
 async def ponedelnik(call:CallbackQuery):
     await call.message.answer(text = "Среда верхней недели")
- 
+
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '4'))
 async def ponedelnik(call:CallbackQuery):
     await call.message.answer(text = "Четверг верхней недели")
@@ -40,7 +40,7 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '7'))
 async def ponedelnik(call:CallbackQuery):
-    await call.message.answer(text = "Воскресенье верхней недели")  
+    await call.message.answer(text = "Воскресенье верхней недели")
 
 #Первая неделя---------------------------------------------------------
 
@@ -66,7 +66,7 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '13'))
 async def ponedelnik(call:CallbackQuery):
-    await call.message.answer(text = "Суббота нижней недели")  
+    await call.message.answer(text = "Суббота нижней недели")
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '14'))
 async def ponedelnik(call:CallbackQuery):
@@ -83,4 +83,4 @@ async def segodnya(call: CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '17'))
 async def segodnya(call: CallbackQuery):
-    await call.message.answer(text = 'Выберите дату:')              
+    await call.message.answer(text = 'Выберите дату:')

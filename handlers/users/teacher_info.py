@@ -9,7 +9,7 @@ from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *
 from keyboards.default.menu import *
-from keyboards.inline.subscribe_inline_button import *
+from keyboards.inline.inline_subscribe import *
 from data.config import admins
 from keyboards.default.menu import menu
 
@@ -17,11 +17,11 @@ from keyboards.default.menu import menu
 
 from core.find_teacher import *
 
-@dp.message_handler(text=f'Получить данные о преподавателе')
+@dp.message_handler(text=f'Найти преподавателя')
 async def prep(message:types.Message):
     await message.answer('Введите фамилию преподавателя', reply_markup=menu)
 
-#@dp.message_handler() хавает любой месседж без филтрации,  
+#@dp.message_handler() хавает любой месседж без филтрации,
 # поэтому с ним надо поаккуратнее
 
 # @dp.message_handler()

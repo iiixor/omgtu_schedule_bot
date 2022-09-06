@@ -6,7 +6,7 @@ from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *
 from keyboards.default.menu import *
-from keyboards.inline.subscribe_inline_button import *
+from keyboards.inline.inline_subscribe import *
 from data.config import admins
 
 @dp.message_handler(text=f'Личный кабинет')

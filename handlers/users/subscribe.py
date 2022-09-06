@@ -7,7 +7,7 @@ from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *
 from keyboards.default.menu import *
-from keyboards.inline import subscribe_inline_button
+from keyboards.inline import inline_subscribe 
 
 
 @dp.callback_query_handler(subscribe_callback.filter(type='yes'))
