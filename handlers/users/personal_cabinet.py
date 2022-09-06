@@ -21,7 +21,7 @@ async def bot_data_request(message: types.Message):
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
-        f'<b>Номер группы:</b>'
+        f'<b>Номер группы:</b>',
         f'<b>Формат подписки</b>: {subscribe_format}',
         ]
         markup = subscribe_button_yes
@@ -29,7 +29,7 @@ async def bot_data_request(message: types.Message):
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
-        f'<b>Номер группы:</b>'
+        f'<b>Номер группы:</b>',
         f'<b>Формат подписки</b>: {subscribe_format}',
         f'<b>Подписка истекает:</b> 01.01.2077',
         ]
