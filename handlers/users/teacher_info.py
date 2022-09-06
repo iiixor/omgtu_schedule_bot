@@ -19,7 +19,7 @@ from core.find_teacher import *
 
 @dp.message_handler(text=f'Найти преподавателя')
 async def prep(message:types.Message):
-    await message.answer('Введите фамилию преподавателя', reply_markup=menu)
+    await message.answer('Введите фамилию преподавателя:', reply_markup=menu)
 
 #@dp.message_handler() хавает любой месседж без филтрации,
 # поэтому с ним надо поаккуратнее

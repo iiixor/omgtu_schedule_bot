@@ -11,11 +11,11 @@ subscribe_button_yes = InlineKeyboardMarkup(row_width=1, inline_keyboard=[
             InlineKeyboardButton(text=f'Оформить подписку ✅', callback_data=subscribe_callback.new(type='yes')),
             InlineKeyboardButton(text=f'Написать в поддержку 👨‍🔧', callback_data=media_callback.new(platform='support'), url=ADMIN_LINK)
         ],
-        
+
         [
-           InlineKeyboardButton(text=f'Изменить группу', callback_data=prepod_callback.new(fio='fioo')) 
+           InlineKeyboardButton(text=f'Выбрать группу', callback_data=prepod_callback.new(fio='fioo')) 
         ]
-    
+
     ]
 )
 
@@ -25,7 +25,7 @@ subscribe_button_cancel = InlineKeyboardMarkup(row_width=1, inline_keyboard=[
             InlineKeyboardButton(text=f'Отменить подписку 🚫', callback_data="subscribe:cancel")
         ],
         [
-           InlineKeyboardButton(text=f'Изменить группу', callback_data=subscribe_callback.new(type='1')) 
+           InlineKeyboardButton(text=f'Выбрать группу', callback_data=subscribe_callback.new(type='1')) 
         ]
     ]
 )
