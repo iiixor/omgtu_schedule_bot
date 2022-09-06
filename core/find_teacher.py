@@ -7,7 +7,7 @@ def find_teacher(name):
         name = name.replace('.',' ')
         name = name.split()
 
-    with open('all_teachers.txt', 'r') as file:
+    with open('core/all_teachers.txt', 'r') as file:
         all_groups = file.readlines()
     for line in all_groups:
         line = line.replace('\n','')
@@ -153,7 +153,7 @@ def get_teacher_schedule(name, date, choice):
 
 
     if len(discipline_dict['disciplines']) == 0:
-        print('<b>Пар нет</b>')
+        #print('<b>Пар нет</b>')
         return '<b>Пар нет</b>'
 
     for i in range(len(discipline_dict['disciplines'])):

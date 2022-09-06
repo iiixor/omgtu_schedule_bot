@@ -2,7 +2,6 @@ from aiogram import types
 from loader import dp, bot
 from aiogram.types import CallbackQuery
 
-from keyboards.inline.inline_switсh_language import *
 from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *

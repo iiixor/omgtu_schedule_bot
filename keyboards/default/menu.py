@@ -17,6 +17,9 @@ menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(text=f'Обратная связь')
+        ],
+        [
+            KeyboardButton(text=f'Карта университета')
         ]
         # [
             # KeyboardButton(text=f'Поменять язык {emoji_ruflag}'),

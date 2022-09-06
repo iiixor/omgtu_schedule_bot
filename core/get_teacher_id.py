@@ -5,7 +5,7 @@ def get_teacher_id(name):
     all_teachers = []
 
 
-    with open ('all_teachers_id.txt','r') as file:
+    with open ('core/all_teachers_id.txt','r') as file:
         all_teachers = file.readlines()
         for teacher in all_teachers:
             teacher = teacher.replace('\n','')

@@ -17,7 +17,7 @@ async def bot_start(message: types.Message):
     # menu указывается в keyboards->default->menu
     # gif = 'media/space.gif'
     await message.delete()
-    text = f'<b>Omgtu_bot</b> приветсвует тебя, {message.from_user.full_name} 👋'
+    text = f'<b>OmGTU_bot</b> приветсвует тебя, {message.from_user.full_name} 👋'
     # await message.answer_animation(types.InputFile(gif))
     await message.answer(text, reply_markup=menu)
 

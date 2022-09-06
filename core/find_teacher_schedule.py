@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 all_teachers_id = []
 
-with open('all_teachers.txt', 'r') as file:
+with open('core/all_teachers.txt', 'r') as file:
     all_teachers = file.readlines()
     for line in all_teachers:
         line = line.replace('\n','')

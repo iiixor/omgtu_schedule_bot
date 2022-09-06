@@ -6,6 +6,7 @@ from .personal_cabinet import dp
 from .support_button import dp
 from .raspisanie import dp
 from .prepod_info import dp
+from .OmGTU_map import dp
 from .subscribe import dp
 from .unknown_msg import dp
 

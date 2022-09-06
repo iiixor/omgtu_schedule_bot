@@ -20,6 +20,12 @@ subscribe_callback = CallbackData('subscribe','type')
 
 raspisanie_callback = CallbackData('days', 'pn')
 
+map_callback = CallbackData('map', 'type')
+
 prepod_callback = CallbackData('r', 'fio')
+
+page_switcher_callback = CallbackData('page', 'number')
+
+
 
 
