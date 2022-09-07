@@ -30,9 +30,12 @@ async def M(call:CallbackQuery):
 #-----------------------------------------------------------Гео кнопкам
 
 @dp.callback_query_handler(map_callback.filter(type = "Main"))
-async def main_map(call:CallbackQuery):
-    # text = 'ВСТАВИТЬ ГЕЯ'
-    await call.message.answer(text = 'ВСТАВИТЬ ГЕЯ')
+async def main_map(message:types.Message):
+    await bot.send_location(message.from_user.id,
+        longitude = 73.290678, 
+        latitude = 55.026071)
+        
+    
 
 @dp.callback_query_handler(map_callback.filter(type = "ulk-1"))
 async def main_map(call:CallbackQuery):
