@@ -51,10 +51,10 @@ map_pg2 = InlineKeyboardMarkup(row_width=3, inline_keyboard=[
         ],
         [
         InlineKeyboardButton(text = f'УПМ', callback_data=map_callback.new(type='UPM')),
-        InlineKeyboardButton(text = f'ФИЗ корпус', callback_data=map_callback.new(type='FIZ')),
+        InlineKeyboardButton(text = f'ФОК', callback_data=map_callback.new(type='FIZ')),
         ],
         [
-        InlineKeyboardButton(text = f'Медиацентр, столовая', callback_data=map_callback.new(type='MEDST')),
+        InlineKeyboardButton(text = f'Медиацентр', callback_data=map_callback.new(type='MEDST')),
         ],
         [
         InlineKeyboardButton(" 1 ", callback_data=page_switcher_callback.new(number='1')),
@@ -69,19 +69,19 @@ map_pg3 = InlineKeyboardMarkup(row_width=3, inline_keyboard=[
 
         [
         InlineKeyboardButton(text = f'Бассейн', callback_data=map_callback.new(type='BAS')),
-        InlineKeyboardButton(text = f'ВУК-1(Тир)', callback_data=map_callback.new(type='vuk-1')),
+        InlineKeyboardButton(text = f'ВУК-1', callback_data=map_callback.new(type='vuk-1')),
         ],
         [
-        InlineKeyboardButton(text = f'ВУК-2(Общага-N1)', callback_data=map_callback.new(type='vuk-2')),
-        InlineKeyboardButton(text = f'ВУК-3(Склад)', callback_data=map_callback.new(type='vuk-3')),
+        InlineKeyboardButton(text = f'ВУК-2', callback_data=map_callback.new(type='vuk-2')),
+        InlineKeyboardButton(text = f'ВУК-3', callback_data=map_callback.new(type='vuk-3')),
         ],
         [
-        InlineKeyboardButton(text = f'ВУК-4(Танки)', callback_data=map_callback.new(type='vuk-4')),
+        InlineKeyboardButton(text = f'ВУК-4', callback_data=map_callback.new(type='vuk-4')),
         InlineKeyboardButton(text = f'ВУК-5', callback_data=map_callback.new(type='vuk-5')),
         ],
         [
         InlineKeyboardButton(text = f'ВУК-6', callback_data=map_callback.new(type='vuk-6')),
-        InlineKeyboardButton(text = f'ВУК-7(Гараж)', callback_data=map_callback.new(type='vuk-7')),
+        InlineKeyboardButton(text = f'ВУК-7', callback_data=map_callback.new(type='vuk-7')),
         ],
         [
         InlineKeyboardButton(" 1 ", callback_data=page_switcher_callback.new(number='1')),
