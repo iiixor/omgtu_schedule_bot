@@ -39,7 +39,9 @@ class Database():
             """
             try:
                 cursor.execute(query,values)
+                # return True
             except sqlite3.IntegrityError:
+                # return False
                 print('#SQLITE3 Primary key is not unique')
             finally:
                 db.commit()
