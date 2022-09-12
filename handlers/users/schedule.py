@@ -1,12 +1,19 @@
 from aiogram import types
-from loader import dp,bot
+from loader import dp
 from aiogram.types import CallbackQuery
 from keyboards.inline.inline_subscribe import *
 import datetime
 
-import locale
 from keyboards.inline.inline_days_of_week import *
 from keyboards.inline.callback_datas import *
+
+#-------------------------------------------------------Время + даты по омску
+
+today = datetime.datetime.now().replace(second=0, microsecond=0)
+Omsk_hour = datetime.timedelta(hours=3)
+date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
+
+#--------------------------------------------------------
 
 @dp.message_handler(text=f'Расписание')
 async def mmm(message:types.Message):
@@ -15,12 +22,6 @@ async def mmm(message:types.Message):
     ]
     await message.answer("\n".join(text), reply_markup=Raspisanie)
 
-#-------------------------------------------------------Время + даты по омску
-today = datetime.datetime.now().replace(second=0, microsecond=0)
-Omsk_hour = datetime.timedelta(hours=3)
-date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
-
-#--------------------------------------------------------
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
 async def ponedelnik(call:CallbackQuery):
     await call.message.answer(text = "Понедельник верхней недели")
@@ -96,13 +97,14 @@ async def segodnya(call: CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '17'))
 async def segodnya(call: CallbackQuery):
-    text =[f'Введите дату в формате\n']
-    await call.message.answer("Введите дату")
+    text = f'Введите дату в формате:\n\n<b>Год.День.Месяц</b>\n\n<i>Например: 1980.05.29</i>'
+    await call.message.answer(text)
 
 
-@dp.message_handler()
+@dp.message_handler(text_contains = ".")
 async def testtt(message:types.Message):
-    with open ('handlers\\users\\user_date.txt', 'w', encoding = 'utf-8') as file:
-        file.write(message.text)
+    text = f'Проверка дата'
+    await message.answer(text)
+    
 
 

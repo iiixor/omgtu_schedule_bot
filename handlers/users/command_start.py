@@ -7,12 +7,14 @@ from keyboards.default import menu
 from filters.emoji import *
 from database.classes import *
 
-database = Database()
-database.path = 'database/users.db'
-path = database.path
 
 @dp.message_handler(CommandStart())
 async def bot_start(message: types.Message):
+    
+    database = Database()
+    database.path = 'database/users.db'
+    path = database.path
+
     
     user_id = message.from_user.id
     name = message.from_user.first_name

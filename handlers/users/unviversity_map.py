@@ -1,7 +1,5 @@
 from aiogram import types
-from keyboards.inline import callback_datas
-from loader import dp,bot
-from keyboards.inline import inline_buildings
+from loader import dp
 from keyboards.inline.callback_datas import *
 from aiogram.types import CallbackQuery
 from keyboards.inline.inline_buildings import *
@@ -11,12 +9,7 @@ from keyboards.inline.inline_buildings import *
 @dp.message_handler(text=f'Карта университета')
 async def map(message: types.Message):
     await message.answer('Выберите корпус:', reply_markup=map_pg1)
-    global id
-    id = message.message_id + 1
-    print(id)
     # return id
-
-
 
 @dp.callback_query_handler(page_switcher_callback.filter(number = "1"))
 async def M(call:CallbackQuery):
