@@ -22,4 +22,4 @@ def check_group(group):
     print('Группа не найдена')
     return 'Группа не найдена\nПоробуйте ввести группу еще раз'   
 
-check_group('ПИН-201')
+check_group('ЭТМ-211/2')

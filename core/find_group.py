@@ -198,4 +198,4 @@ def find_group(group, date, choice):
         print()
 
 
-find_group('ПИ-202/2',"2022.09.05", True)
+find_group(2022.09'ПИ-202/2',".05", True)
