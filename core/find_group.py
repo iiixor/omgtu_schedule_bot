@@ -1,4 +1,5 @@
 import json
+from core.find_teacher import *
 
 def format_dayofweek(str):
     days = {
@@ -13,9 +14,7 @@ def format_dayofweek(str):
     return days[str]
 
 def find_group(group, date, choice):
-    from find_teacher import find_teacher
     import requests
-    import fake_useragent
     from bs4 import BeautifulSoup
 
     discipline_dict = {}
@@ -111,6 +110,8 @@ def find_group(group, date, choice):
                         lecturer_title = lecturer_title.replace('}','')
                         # print(lecturer_title)
                         lecturer_title = find_teacher(lecturer_title)
+                        if lecturer_title == f'<i>Преподатель с такой фамилией не найден!</i>\n<b>Попробуйте еще раз!</b>':
+                            lecturer_title = f'<i>Неизвестно</i>'
                         discipline_dict['lecturer_title'].append(lecturer_title)
                         continue
 
@@ -160,6 +161,8 @@ def find_group(group, date, choice):
         print('<b> Пар нет </b>')
         return '<b> Пар нет </b>'
 
+    rez = ''
+
     for i in range(len(discipline_dict['disciplines'])):
         disciplines = discipline_dict['disciplines'][i]
         kindOfWork = discipline_dict['kindOfWork'][i]
@@ -192,10 +195,15 @@ def find_group(group, date, choice):
         f'<b>Преподатель</b>: {lecturer_title}',
         f'<b>Корпус</b>: {building}',
         f'<b>Аудитория:</b> {auditorium}',
+        f'\n'
         ]
+        # rez = ''
+        rez = rez +'\n'.join(text)
+        # return rez
+        # print('\n'.join(text))
+        # print()
 
-        print('\n'.join(text))
-        print()
+    return rez    # print(rez)
 
 
-find_group(2022.09'ПИ-202/2',".05", True)
+# find_group(2022.09'ПИ-202/2',".05", True)

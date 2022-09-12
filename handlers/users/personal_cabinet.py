@@ -25,7 +25,7 @@ async def bot_data_request(message: types.Message):
     # print(group)
 
     subscribe_format=''
-    if sub_format == 'Full' or message.from_user.id in admins:
+    if sub_format == 'Full':
         subscribe_format='Полный ✅'
     else:
         subscribe_format='Бесплатный ❌'
@@ -34,24 +34,25 @@ async def bot_data_request(message: types.Message):
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
-        f'<b>Номер группы:</b> {group}',
+        f'Группы: <code>{group}</code>',
         f'<b>Формат подписки</b>: {subscribe_format}',
         ]
         markup = subscribe_button_yes
     else:
+        sub_expiration = database.find_value(path, user_id, 'sub_expiration')
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
-        f'<b>Номер группы:</b> {group}',
+        f'Группы: <code>{group}</code>',
         f'<b>Формат подписки</b>: {subscribe_format}',
-        f'<b>Подписка истекает:</b> 01.01.2077',
+        f'<b>Подписка истекает:</b> {sub_expiration}',
         ]
         markup = subscribe_button_cancel
     await message.answer("\n".join(text), reply_markup=markup)
 
 @dp.callback_query_handler(subscribe_callback.filter(type='group'))
 async def group_choose(call:CallbackQuery):
-    text = 'Введите номер группы\n <i>Например: ПМм-221/1</i>'
+    text = 'Введите номер группы\nНапример: <code>ПМм-221/1</code>'
     await call.message.answer(text)
 
 @dp.message_handler(text_contains = "-")

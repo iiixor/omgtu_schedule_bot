@@ -3,7 +3,7 @@ from .command_menu import dp
 from .command_info import dp
 from .command_support import dp
 from .support_button import dp
-from .teacher_info import dp
+# from .teacher_info import dp
 from .unviversity_map import dp
 # from .personal_cabinet import dp
 from .schedule import dp
@@ -12,6 +12,7 @@ from .personal_cabinet import dp
 # from .teacher_info import dp
 # from .personal_cabinet import dp
 from .subscribe import dp
+from .teacher_info import dp
 from .unknown_msg import dp
 
 

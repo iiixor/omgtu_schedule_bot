@@ -20,7 +20,7 @@ def find_teacher(name):
                         line = line.split(' : ')
                         text = [
                         '\n'
-                        f'  <b>Имя</b>: {line[0]}',
+                        f'  Имя: <code>{line[0]}</code>',
                         f'  <b>Ссылка</b>: {line[1]}'
                         ]
                         text = '\n'.join(text)
@@ -31,13 +31,13 @@ def find_teacher(name):
                 line = line.split(' : ')
                 text = [
                 '\n',
-                f'  <b>Имя</b>: {line[0]}',
+                f'  Имя: <code>{line[0]}</code>',
                 f'  <b>Ссылка</b>: {line[1]}'
                 ]
                 text = '\n'.join(text)
                 # print(text)
                 return text
-    return f'<b>Преподатель с такой фамилией не найден!</b>\nПопробуйте еще раз'
+    return f'<i>Преподатель с такой фамилией не найден!</i>\n<b>Попробуйте еще раз!</b>'
 
 
 def format_dayofweek(str):

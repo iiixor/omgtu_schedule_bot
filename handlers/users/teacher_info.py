@@ -24,30 +24,30 @@ async def prep(message:types.Message):
 #@dp.message_handler() хавает любой месседж без филтрации,
 # поэтому с ним надо поаккуратнее
 
-# @dp.message_handler()
-# async def prep(message:types.Message):
+@dp.message_handler()
+async def prep(message:types.Message):
 
-#     # в переменную surmane присваиваем то, что отправил пользователь
+    # в переменную surmane присваиваем то, что отправил пользователь
 
-#     surmane = message.text
+    surmane = message.text
 
-#     # вызывает метод find_teacher() из файла find_teacher.py
-#     # в качестве аругмента передаем фамилию преподавателя, которую
-#     # ввел пользователь
+    # вызывает метод find_teacher() из файла find_teacher.py
+    # в качестве аругмента передаем фамилию преподавателя, которую
+    # ввел пользователь
 
-#     # результат записывает в text
+    # результат записывает в text
 
-#     text = find_teacher(surmane)
+    text = find_teacher(surmane)
 
-#     # форматируем ответ
+    # форматируем ответ
 
-#     if '  ' in text:
-#         text = text.replace('  ','')
-#     print(text)
+    if '  ' in text:
+        text = text.replace('  ','')
+    print(text)
 
-#     # вводим результат
+    # вводим результат
 
-#     await message.answer(text)
+    await message.answer(text)
 
 
 
