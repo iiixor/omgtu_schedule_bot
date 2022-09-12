@@ -1,5 +1,5 @@
 def check_group(group):
-    with open('all_groups.txt','r') as file:
+    with open('core/all_groups.txt','r', encoding = 'utf-8') as file:
 
         all_groups_raw = []
 
@@ -15,11 +15,10 @@ def check_group(group):
 
     for line in all_groups:
         if group == line:
-            print('Группа найдена')
-            print(f'Твоя группа: {group}')
+            # print('Группа найдена')
+            # print(f'Твоя группа: {group}')
             return 'Группа найдена'
         
-    print('Группа не найдена')
+    # print('Группа не найдена')
     return 'Группа не найдена\nПоробуйте ввести группу еще раз'   
 
-check_group('ПИН-201')

@@ -1,3 +1,4 @@
+from email import message
 from aiogram import types
 from loader import dp, bot
 from aiogram.types import CallbackQuery
@@ -9,6 +10,7 @@ from parsing_data.parsing_main import *
 from keyboards.default.menu import *
 from keyboards.inline import inline_subscribe 
 
+all_groups='БИТ-202 : 21, Хм-221 : 749 Э-203 : 775ТЭ-212 : 724Э-194 : 771ПИН-201 : 548ТСН-192 : 712'
 
 @dp.callback_query_handler(subscribe_callback.filter(type='yes'))
 async def bot_get_russian(call: CallbackQuery):
