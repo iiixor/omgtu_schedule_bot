@@ -11,17 +11,36 @@ from keyboards.inline.inline_subscribe import *
 from data.config import admins
 from core.check_group import * 
 from database.classes import *
+from handlers.users.subscribe import *
 
 database = Database()
 database.path = 'database/users.db'
 path = database.path
 
+# def time_sub_days(sub_expiration):
+#     time_now = time.time()
+#     middle_time =  int(sub_expiration) - time_now
+#     if middle_time <=0:
+#         return False
+#     else:
+#         dt = str(datetime.timedelta(seconds=middle_time))
+#         dt = dt.replace('days','дней')
+#         dt = dt.replace('day', 'день')
+#         return dt
+
+def str_to_date(str_date):
+    return datetime.datetime.strptime(str_date,'%Y.%m.%d').date()
 
 @dp.message_handler(text=f'Личный кабинет')
 async def bot_data_request(message: types.Message):
     user_id = message.from_user.id
+    sub_expiration = database.find_value(path, message.from_user.id, 'sub_expiration')
+    sub_expiration = str_to_date(sub_expiration)
     sub_format = database.find_value(path, message.from_user.id, 'sub_format')
     group = database.find_value(path, user_id, 'user_group')
+    today = datetime.date.today()
+    if today >= sub_expiration:
+        database.change_value(path, message.from_user.id, 'sub_format', 'Free')
     # print(group)
 
     subscribe_format=''

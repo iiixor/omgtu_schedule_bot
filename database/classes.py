@@ -1,4 +1,6 @@
 import sqlite3
+import time
+import datetime
 
 # from core.find_group import find_group
 
@@ -8,7 +10,7 @@ class Database():
     path = 'users.db'
 
     # создание базы-данных
-    def create_db():
+    def create_db(self):
         with sqlite3.connect('users.db') as db:
             cursor = db.cursor()
             query = """
@@ -18,7 +20,8 @@ class Database():
                 user_name TEXT,
                 user_group TEXT NOT NULL DEFAULT 'None',
                 sub_format TEXT NOT NULL DEFAULT 'Free',
-                sub_expiration TEXT NOT NULL DEFAULT '07.07.2077' 
+                sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
+                bill_id TEXT NOT NULL DEFAULT 'Empty'  
             )    
             """
             cursor.executescript(query)
@@ -80,3 +83,13 @@ class Database():
 # database.path = 'users.db'
 # path = database.path
 # database.change_value(path, 837095301, 'sub_format','Free')
+
+#creat db
+
+# database = Database()
+# database.path = 'users.db'
+# path = database.path
+# database.create_db()
+
+
+

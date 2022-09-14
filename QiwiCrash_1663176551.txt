@@ -1,0 +1,49 @@
+####################################################
+###################### STEP 1 ######################
+####################################################
+
+R-URL: https://api.qiwi.com/partner/bill/v1/bills/WhiteApfel-PyQiwiP2P-17654037-111
+URL: https://api.qiwi.com/partner/bill/v1/bills/WhiteApfel-PyQiwiP2P-17654037-111
+Code: 423 Locked
+Method: GET
+
+##################### REQUEST ######################
+Headers:
+
+Host:           api.qiwi.com
+Accept:         */*
+Accept-Encoding: gzip, deflate
+Connection:     keep-alive
+User-Agent:     python-httpx/0.23.0
+Content-Type:   application/json
+Authorization:  Bearer eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6Ijk3c2h4My0wMCIsInVzZXJfaWQiOiI3OTg1NDc2MzI0NSIsInNlY3JldCI6ImQ4Yjk4NmQ3ODgwM2I4MTczMjAyYjkyOWZiNWMxNGQxZWEyZDlkMGEzNDZlYWJjY2E2MGRmNzNhZjU5ZWQxMDgifX0=
+Cookie:         auth_ukafokfuabbuzdckyiwlunsh=MDE2fF98X3xKAVNTAkREFWtWcTtBdVdeM01LU2BeQEAxYFV4Kg4UYH8vMkp6AHVmVUhgW1YHcghcWzV+cQFacBhyUlF3SntwQlZJAQpDRlwjACdvEmtaDzdBA1V4XUVbZ2gAd3kMRA==
+
+########### CONTENT ############
+
+######### END CONTENT ##########
+
+##################### RESPONSE #####################
+
+Headers:
+
+Server:         nginx
+Date:           Wed, 14 Sep 2022 17:29:11 GMT
+Content-Type:   application/json
+Content-Length: 234
+Connection:     keep-alive
+Cache-Control:  no-cache, no-store
+X-B3-SpanId:    f2aa2014aac429ae
+X-B3-SpanId:    252a9641a0d41209
+X-Edge-Proxied-Response: true
+Expires:        Thu, 01 Jan 1970 00:00:00 GMT
+X-B3-ParentSpanId: 21824b705b066a57
+X-B3-TraceId:   a17e68a0c69fa164
+content-encoding: gzip
+Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+
+########### CONTENT ############
+{"serviceName":"payin-invoicing-api","errorCode":"request.blocked","description":"Произошла ошибка, попробуйте позже","userMessage":"Произошла ошибка, попробуйте позже","dateTime":"2022-09-14T20:29:11.302+03:00","traceId":"a17e68a0c69fa164"}
+######### END CONTENT ##########
+
