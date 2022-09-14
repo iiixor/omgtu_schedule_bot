@@ -38,7 +38,37 @@ async def handle_successful_payment(message: types.Message, state: FSMContext):
         await state.finish()
     else:
         await message.answer("Оплата не прошла")
-        await state.finish()
+        await state.
+        
+
+@dp.message_handler(text = f'Отмена')
+async def cancel(message:types.Message, state: FSMContext):
+    await message.answer('Вы отменили')
+    await state.reset_state()
+    await state.finish()
+
+
+
+
+    
+    
+    # succesfull_payment = False
+    # while succesfull_payment == False:
+    #     if await qiwi_p2p_client.check_if_bill_was_paid(bill):
+    #         succesfull_payment = True
+    #         await message.answer("Оплата прошла")
+    #     else:
+    #         await message.answer("Оплата не прошла")
+    # await state.finish()
+    
+    
+    
+    # if await qiwi_p2p_client.check_if_bill_was_paid(bill):
+    #     await message.answer("Оплата прошла")
+    #     await state.finish()
+    # else:
+    #     await message.answer("Оплата не прошла")
+    #     await state.finish()
 
 # @dp.message_handler(text=f"Личный кабинет")
 # async def bot_data_request(message: types.Message):
