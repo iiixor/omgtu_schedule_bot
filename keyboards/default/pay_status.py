@@ -9,5 +9,5 @@ i_paid = ReplyKeyboardMarkup(
             KeyboardButton(text=f'Я оплатил'),
             KeyboardButton(text=f'Отмена')
         ]
-    ]
+    ],resize_keyboard=True
 )
