@@ -84,7 +84,7 @@ class Database():
 # path = database.path
 # database.change_value(path, 837095301, 'sub_format','Free')
 
-#creat db
+# creat db
 
 # database = Database()
 # database.path = 'users.db'
