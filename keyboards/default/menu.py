@@ -14,7 +14,7 @@ menu = ReplyKeyboardMarkup(
             KeyboardButton(text=f'Расписание')
         ],
         [
-            KeyboardButton(text=f'Обратная связь'),
+
             KeyboardButton(text=f'Личный кабинет')
         ],
     ],

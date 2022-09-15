@@ -4,7 +4,6 @@ from aiogram.types import CallbackQuery
 
 
 from core import *
-from keyboards.inline.inline_switсh_language import *
 from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *

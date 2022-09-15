@@ -4,8 +4,7 @@ from aiogram.utils.callback_data import CallbackData
 from keyboards.inline.callback_datas import *
 from filters.emoji import *
 
-ADMIN_LINK = "https://t.me/wywmusic"
-bot = "@omgtu_schedule_bot"
+ADMIN_LINK = "https://t.me/delpy_manager"
 
 subscribe_button_yes = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
         [
@@ -47,16 +46,15 @@ subscribe_button_free_pass = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
 
 subscribe_button_sub_variants = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
         [
-            InlineKeyboardButton(text=f'900₽ / Год ',callback_data=subscribe_callback.new(type='year'))
+            InlineKeyboardButton(text=f'900 руб. / Год ',callback_data=subscribe_callback.new(type='year'))
         ],
         [
-            InlineKeyboardButton(text=f'500₽ / Пол года', callback_data=subscribe_callback.new(type='half_year')),
+            InlineKeyboardButton(text=f'500 руб. / Пол года', callback_data=subscribe_callback.new(type='half_year')),
         ],
         [
-            InlineKeyboardButton(text=f'100₽ / Месяц', callback_data=subscribe_callback.new(type='month')),
+            InlineKeyboardButton(text=f'100 руб. / Месяц', callback_data=subscribe_callback.new(type='month')),
         ],
 
     ]
 )
-
 

@@ -1,7 +1,4 @@
-from curses import start_color
 from datetime import datetime
-from email import message
-from selectors import EpollSelector
 from aiogram import types
 from loader import dp, bot
 from aiogram.types import CallbackQuery
@@ -21,12 +18,7 @@ from core.check_group import *
 from database.classes import *
 
 
-from glQiwiApi import QiwiWrapper
-from glQiwiApi import QiwiP2PClient
-from aiogram.dispatcher import FSMContext
-from glQiwiApi.qiwi.clients.p2p.types import Bill
 from pyqiwip2p import QiwiP2P
-from pyqiwip2p.p2p_types import QiwiCustomer, QiwiDatetime, PaymentMethods #можно удалить
 import random
 import time
 
