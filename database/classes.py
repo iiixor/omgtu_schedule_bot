@@ -76,6 +76,13 @@ class Database():
             # cursor.close()
             # db.close()
 
+    def find_all(self,path, column_name):
+        with sqlite3.connect(path) as db:
+            cursor = db.cursor()
+            cursor.execute(f"SELECT {column_name} FROM users")
+            return cursor.fetchall()
+
+
 
 #add root
 

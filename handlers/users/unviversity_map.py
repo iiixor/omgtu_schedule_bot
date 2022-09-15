@@ -9,7 +9,7 @@ from keyboards.inline.inline_buildings import *
 @dp.message_handler(text=f'Карта университета')
 async def map(message: types.Message):
     await message.answer('Выберите корпус:', reply_markup=map_pg1)
-    # return id
+
 
 @dp.callback_query_handler(page_switcher_callback.filter(number = "1"))
 async def M(call:CallbackQuery):

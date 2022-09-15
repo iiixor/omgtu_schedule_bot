@@ -21,7 +21,6 @@ async def bot_start(message: types.Message):
     user_name = message.from_user.username
 
     database.write_in_db(path,[user_id, name, user_name])
-
     await message.delete()
     text = f'<b>Омский Поликек</b> приветсвует тебя, {message.from_user.full_name} 👋'
     await message.answer(text, reply_markup=menu)
