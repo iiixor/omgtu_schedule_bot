@@ -17,16 +17,6 @@ database = Database()
 database.path = 'database/users.db'
 path = database.path
 
-# def time_sub_days(sub_expiration):
-#     time_now = time.time()
-#     middle_time =  int(sub_expiration) - time_now
-#     if middle_time <=0:
-#         return False
-#     else:
-#         dt = str(datetime.timedelta(seconds=middle_time))
-#         dt = dt.replace('days','дней')
-#         dt = dt.replace('day', 'день')
-#         return dt
 
 def str_to_date(str_date):
     return datetime.datetime.strptime(str_date,'%Y.%m.%d').date()
@@ -40,24 +30,24 @@ async def bot_data_request(message: types.Message):
     group = database.find_value(path, user_id, 'user_group')
     today = datetime.date.today()
     if today >= sub_expiration:
-        database.change_value(path, message.from_user.id, 'sub_format', 'Free')
+        database.change_value(path, message.from_user.id, 'sub_format', 'Free_pass_used')
     # print(group)
 
     subscribe_format=''
-    if sub_format == 'Full':
+    if sub_format == 'Full' or sub_format == 'Free_pass':
         subscribe_format='Полный ✅'
     else:
         subscribe_format='Бесплатный ❌'
 
-    if subscribe_format == 'Бесплатный ❌':
+    if sub_format == 'Free':
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
         f'Группы: <code>{group}</code>',
         f'<b>Формат подписки</b>: {subscribe_format}',
         ]
-        markup = subscribe_button_yes
-    else:
+        markup = subscribe_button_free_pass
+    elif sub_format == 'Full' :
         sub_expiration = database.find_value(path, user_id, 'sub_expiration')
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
@@ -67,6 +57,25 @@ async def bot_data_request(message: types.Message):
         f'<b>Подписка истекает:</b> {sub_expiration}',
         ]
         markup = subscribe_button_cancel
+    elif sub_format == 'Free_pass':
+        sub_expiration = database.find_value(path, user_id, 'sub_expiration')
+        text = [
+        f'<b>Ваше имя:</b> {message.from_user.full_name}',
+        f'<b>Ваш ID:</b> {message.from_user.id}',
+        f'Группы: <code>{group}</code>',
+        f'<b>Формат подписки</b>: {subscribe_format}',
+        f'<b>Подписка истекает:</b> {sub_expiration}',
+        ]
+        markup = subscribe_button_cancel
+    elif sub_format == 'Free_pass_used':
+        text = [
+        f'<b>Ваше имя:</b> {message.from_user.full_name}',
+        f'<b>Ваш ID:</b> {message.from_user.id}',
+        f'Группы: <code>{group}</code>',
+        f'<b>Формат подписки</b>: {subscribe_format}',
+        ]
+        markup = subscribe_button_yes
+
     await message.answer("\n".join(text), reply_markup=markup)
 
 @dp.callback_query_handler(subscribe_callback.filter(type='group'))

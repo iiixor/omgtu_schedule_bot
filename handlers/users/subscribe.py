@@ -1,3 +1,4 @@
+from curses import start_color
 from datetime import datetime
 from email import message
 from selectors import EpollSelector
@@ -13,7 +14,7 @@ from keyboards.inline.callback_datas import *
 from filters.emoji import *
 from parsing_data.parsing_main import *
 from keyboards.default.menu import *
-from keyboards.inline import inline_subscribe 
+from keyboards.inline.inline_subscribe import *
 from keyboards.default.pay_status import *
 from handlers.users.personal_cabinet import *
 from core.check_group import * 
@@ -52,48 +53,97 @@ def time_sub_days(sub_expiration):
 
 # def str_to_date(str_date):
 #     return datetime.datetime.strptime(str_date,'%Y.%m.%d').date()
+# global start_time
+# start_time = 0.0
+
 
 @dp.callback_query_handler(subscribe_callback.filter(type='yes'))
-async def handle_creation_of_payment(call:CallbackQuery):
-    comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
-    bill = p2p.bill(amount=1, lifetime=5, comment=comment)
-    database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
-    await call.message.answer(text=f"Ваш счёт на оплату\n {bill.pay_url}")
-    timing = time.time()
-    bill_id = database.find_value(path, call.from_user.id, 'bill_id')
-    while time.time() - timing < 300:
-        print(str(p2p.check(bill_id = bill_id).status))
-        print(time.time() - timing)
-        time.sleep(5)
-        if str(p2p.check(bill_id = bill_id).status) == "PAID":
-            database.change_value(path, call.from_user.id, 'sub_format', 'Full')
-            today = datetime.date.today()
-            Omsk_hour = datetime.timedelta(days=1)
-            Omsk_hours = today + Omsk_hour
-            Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
-            new_sub_expiration = Omsk_hours
-            database.change_value(path, call.from_user.id, 'sub_expiration', new_sub_expiration)
-            sub_format = database.find_value(path, call.from_user.id, 'sub_format')
-            await call.message.answer("Оплата прошла")
-            break
-    if time.time() - timing < 120 and str(p2p.check(bill_id = bill_id).status) != "PAID":
-        await call.message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
-
-# @dp.message_handler(text="Я оплатил")
-# async def handle_successful_payment(message: types.Message):
-#     # bill: Bill = data.get("bill")
-#     bill_id = database.find_value(path, call.from_user.id, 'bill_id')
-#     timi
-#     if str(p2p.check(bill_id = bill_id).status) == "PAID":
-#         await message.answer("Оплата прошла",reply_markup=subscribe_button_yes)
-#         database.change_value(path, message.from_user.id, 'sub_format', 'Full')
+async def choice_sub_format(call:CallbackQuery):
+    await call.message.answer('Выберете формат подписки:', reply_markup=subscribe_button_sub_variants)
+#     check_bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+#     if check_bill_id != "Empty":
+#         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 #     else:
-#         await message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
+#         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
+#         bill = p2p.bill(amount=1, lifetime=5, comment=comment)
+#         database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
+#         global start_time
+#         start_time = time.time()
+#         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
+#         # await start_time
+#         return start_time
+
+@dp.callback_query_handler(subscribe_callback.filter(type='month'))
+async def handle_creation_of_payment(call:CallbackQuery):
+    check_bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+    if check_bill_id != "Empty":
+        await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
+    else:
+        comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
+        bill = p2p.bill(amount=1, lifetime=5, comment=comment)
+        database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
+        # global start_time
+        # start_time = time.time()
+        # print(time.time()-start_time)
+        await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
+        # await start_time
+        # return start_time
+
+    # timing = time.time()
+    # bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+    # if time.time() - timing > 300:
+    #     if str(p2p.check(bill_id = bill_id).status) == "PAID":
+    #         database.change_value(path, call.from_user.id, 'sub_format', 'Full')
+    #         today = datetime.date.today()
+    #         Omsk_hour = datetime.timedelta(days=1)
+    #         Omsk_hours = today + Omsk_hour
+    #         Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
+    #         new_sub_expiration = Omsk_hours
+    #         database.change_value(path, call.from_user.id, 'sub_expiration', new_sub_expiration)
+    #         sub_format = database.find_value(path, call.from_user.id, 'sub_format')
+    #         await call.message.answer("Оплата прошла")
+    #     else:
+    #         await call.message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
+
+# @dp.message_handler(text = 'Проверить оплату')
+# async def check_pay(mes)
+
+@dp.callback_query_handler(subscribe_callback.filter(type='free_pass'))
+async def handle_creation_of_payment(call:CallbackQuery):
+    today = datetime.date.today()
+    Omsk_hour = datetime.timedelta(days=1)
+    Omsk_hours = today + Omsk_hour
+    Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
+    new_sub_expiration = Omsk_hours
+    database.change_value(path, call.from_user.id, 'sub_expiration', new_sub_expiration)
+    database.change_value(path, call.from_user.id, 'sub_format', 'Free_pass')
+    await call.message.answer(f'Поздравляем, вы получили весь функционал бесплатно до {new_sub_expiration}')
+    # database.change_value(path, call.from_user.id, 'sub_expiration', new_sub_expiration)
+
+
+@dp.message_handler(text="Проверить оплату")
+async def handle_successful_payment(message: types.Message):
+    # bill: Bill = data.get("bill")
+    bill_id = database.find_value(path, message.from_user.id, 'bill_id')
+    print(str(p2p.check(bill_id = bill_id).status))
+    if str(p2p.check(bill_id = bill_id).status) == "PAID":
+        await message.answer("Оплата прошла")
+        database.change_value(path, message.from_user.id, 'sub_format', 'Full')
+        database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+    elif str(p2p.check(bill_id = bill_id).status) == "WAITING" :
+        await message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
+    else:
+        database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+        await message.answer("Оплата не прошла\n<i>Попробуйте сформировать новую ссылку</i>")
+
         
 
-# @dp.message_handler(text = f'Отмена')
-# async def cancel(message:types.Message):
-#     await message.answer('Вы отменили отменили оплату')
+@dp.message_handler(text = f'Отмена')
+async def cancel(message:types.Message):
+    # bp2p.ill_id = database.find_value(path, message.from_user.id, 'bill_id')
+    
+    database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+    await message.answer('Вы отменили оплату')
 
 #----------------------------------------------------
 

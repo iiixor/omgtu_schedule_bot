@@ -6,7 +6,7 @@ from aiogram.types import KeyboardButton,ReplyKeyboardMarkup
 i_paid = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text=f'Я оплатил'),
+            KeyboardButton(text=f'Проверить оплату'),
             KeyboardButton(text=f'Отмена')
         ]
     ],resize_keyboard=True
