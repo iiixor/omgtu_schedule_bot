@@ -110,8 +110,8 @@ def find_group(group, date, choice):
                         lecturer_title = lecturer_title.replace('}','')
                         # print(lecturer_title)
                         lecturer_title = find_teacher(lecturer_title)
-                        if lecturer_title == f'<i>Преподатель с такой фамилией не найден!</i>\n<b>Попробуйте еще раз!</b>':
-                            lecturer_title = f'<i>Неизвестно</i>'
+                        if lecturer_title == f'Преподатель с такой фамилией не найден!\nПопробуйте еще раз!':
+                            lecturer_title = f'Неизвестно'
                         discipline_dict['lecturer_title'].append(lecturer_title)
                         continue
 
@@ -158,8 +158,8 @@ def find_group(group, date, choice):
     #         print(line)
     #
     if len(discipline_dict['disciplines']) == 0:
-        print('<b> Пар нет </b>')
-        return '<b> Пар нет </b>'
+        print(' Пар нет ')
+        return ' Пар нет '
 
     rez = ''
 
@@ -190,11 +190,11 @@ def find_group(group, date, choice):
 
 
         text = [
-        f'<b>Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
-        f'<b>Время занятия</b>: {beginLesson} - {endLesson}',
-        f'<b>Преподатель</b>: {lecturer_title}',
-        f'<b>Корпус</b>: {building}',
-        f'<b>Аудитория:</b> {auditorium}',
+        f'Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
+        f'Время занятия</b>: {beginLesson} - {endLesson}',
+        f'Преподатель</b>: {lecturer_title}',
+        f'Корпус</b>: {building}',
+        f'Аудитория:</b> {auditorium}',
         f'\n'
         ]
         # rez = ''

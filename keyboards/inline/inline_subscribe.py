@@ -46,13 +46,13 @@ subscribe_button_free_pass = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
 
 subscribe_button_sub_variants = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
         [
-            InlineKeyboardButton(text=f'900 руб. / Год ',callback_data=subscribe_callback.new(type='year'))
+            InlineKeyboardButton(text=f'895 руб. / Год ',callback_data=subscribe_callback.new(type='year'))
         ],
         [
-            InlineKeyboardButton(text=f'500 руб. / Пол года', callback_data=subscribe_callback.new(type='half_year')),
+            InlineKeyboardButton(text=f'495 руб. / Пол года', callback_data=subscribe_callback.new(type='half_year')),
         ],
         [
-            InlineKeyboardButton(text=f'100 руб. / Месяц', callback_data=subscribe_callback.new(type='month')),
+            InlineKeyboardButton(text=f'95 руб. / Месяц', callback_data=subscribe_callback.new(type='month')),
         ],
 
     ]

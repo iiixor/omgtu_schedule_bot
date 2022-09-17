@@ -7,7 +7,7 @@ def find_teacher(name):
         name = name.replace('.',' ')
         name = name.split()
 
-    with open('core/all_teachers.txt', 'r') as file:
+    with open('core/all_teachers.txt', 'r', encoding = 'utf-8') as file:
         all_groups = file.readlines()
     for line in all_groups:
         line = line.replace('\n','')
@@ -20,8 +20,8 @@ def find_teacher(name):
                         line = line.split(' : ')
                         text = [
                         '\n'
-                        f'  Имя: <code>{line[0]}</code>',
-                        f'  <b>Ссылка</b>: {line[1]}'
+                        f'  Имя: {line[0]}',
+                        f'  Ссылка: {line[1]}'
                         ]
                         text = '\n'.join(text)
                         # print(text)
@@ -31,13 +31,13 @@ def find_teacher(name):
                 line = line.split(' : ')
                 text = [
                 '\n',
-                f'  Имя: <code>{line[0]}</code>',
-                f'  <b>Ссылка</b>: {line[1]}'
+                f'  Имя: {line[0]}',
+                f'  Ссылка: {line[1]}'
                 ]
                 text = '\n'.join(text)
                 # print(text)
                 return text
-    return f'<i>Преподатель с такой фамилией не найден!</i>\n<b>Попробуйте еще раз!</b>'
+    return f'Преподатель с такой фамилией не найден!\nПопробуйте еще раз!'
 
 
 def format_dayofweek(str):
@@ -58,7 +58,7 @@ def get_teacher_schedule(name, date, choice):
     import fake_useragent
     from bs4 import BeautifulSoup
 
-    from get_teacher_id import get_teacher_id
+    from core.get_teacher_id import get_teacher_id
 
     discipline_dict = {}
     discipline_dict.setdefault('disciplines',[])
@@ -154,7 +154,7 @@ def get_teacher_schedule(name, date, choice):
 
     if len(discipline_dict['disciplines']) == 0:
         #print('<b>Пар нет</b>')
-        return '<b>Пар нет</b>'
+        return 'Пар нет'
 
     for i in range(len(discipline_dict['disciplines'])):
 
@@ -183,11 +183,11 @@ def get_teacher_schedule(name, date, choice):
 
 
         text = [
-        f'<b>Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
-        f'<b>Время занятия</b>: {beginLesson} - {endLesson}',
-        f'<b>Преподатель</b>: {lecturer_title}',
-        f'<b>Корпус</b>: {building}',
-        f'<b>Аудитория:</b> {auditorium}',
+        f'Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
+        f'Время занятия</b>: {beginLesson} - {endLesson}',
+        f'Преподатель</b>: {lecturer_title}',
+        f'Корпус</b>: {building}',
+        f'Аудитория:</b> {auditorium}',
 
 
         ]
@@ -199,5 +199,5 @@ def get_teacher_schedule(name, date, choice):
 
 
 
-# find_group('ПИ-202/2',"2022.09.05", False)
-# get_teacher_schedule('Панин','2022.09.05', True)
+#find_group('ПИ-202/2',"2022.09.05", False)
+get_teacher_schedule('Панин','2022.09.05', True)

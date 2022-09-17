@@ -5,7 +5,7 @@ def get_teacher_id(name):
     all_teachers = []
 
 
-    with open ('core/all_teachers_id.txt','r') as file:
+    with open ('core/all_teachers_id.txt','r', encoding = 'utf-8') as file:
         all_teachers = file.readlines()
         for teacher in all_teachers:
             teacher = teacher.replace('\n','')
@@ -25,6 +25,6 @@ def get_teacher_id(name):
                     id = teacher[1]
                     # print(id)
                     return id
-        return f'<b>Преподатель с такой фамилией не найден!</b>\nПопробуйте еще раз'
+        return f'Преподатель с такой фамилией не найден!\nПопробуйте еще раз'
 
 # get_teacher_id('панин')

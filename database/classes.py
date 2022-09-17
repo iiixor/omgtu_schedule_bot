@@ -21,7 +21,8 @@ class Database():
                 user_group TEXT NOT NULL DEFAULT 'None',
                 sub_format TEXT NOT NULL DEFAULT 'Free',
                 sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
-                bill_id TEXT NOT NULL DEFAULT 'Empty'  
+                bill_id TEXT NOT NULL DEFAULT 'Empty',
+                find_teacher TEXT NOT NULL DEFAULT 'Empty' 
             )    
             """
             cursor.executescript(query)
@@ -93,10 +94,10 @@ class Database():
 
 # creat db
 
-# database = Database()
-# database.path = 'users.db'
-# path = database.path
-# database.create_db()
+database = Database()
+database.path = 'users.db'
+path = database.path
+database.create_db()
 
 
 
