@@ -19,6 +19,9 @@ database = Database()
 database.path = 'database/users.db'
 path = database.path
 
+today = datetime.datetime.now().replace(second=0, microsecond=0)
+Omsk_hour = datetime.timedelta(hours=3)
+date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
 
 @dp.message_handler(text=f'Найти преподавателя')
 async def prep(message:types.Message):
@@ -52,5 +55,177 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '2p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '3p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '4p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)    
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '5p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '6p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '7p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '8p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '9p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '10p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '11p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '12p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '13p'))
+async def ponedelnik(call:CallbackQuery):
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = '2022.09.05'
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '15p'))
+async def ponedelnik(call:CallbackQuery):
+    Omsk_hours = today + Omsk_hour
+    Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = Omsk_hours
+    text = get_teacher_schedule (teacher, date, sub_bool)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '16p'))
+async def ponedelnik(call:CallbackQuery):
+    time_tomorrow_Omsk = today + date_time_tomorrow_for_OMSK
+    time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
+    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        sub_bool = True
+    else:
+        sub_bool = False
+    date = time_tomorrow_Omsk
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
