@@ -8,6 +8,4 @@ lxml
 fake-useragent
 grequests
 datetime
-random
-time
 qiwip2p
