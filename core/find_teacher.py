@@ -203,8 +203,8 @@ def get_teacher_schedule(name, date, choice):
             auditorium = discipline_dict['auditorium'][i]
         else:
             lecturer_title = name
-            building = 'Недосутпно'
-            auditorium = 'Недосутпно'
+            building = 'Недоступно'
+            auditorium = 'Недотупно'
 
 
         text = [
