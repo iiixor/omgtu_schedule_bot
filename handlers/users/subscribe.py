@@ -88,7 +88,7 @@ async def handle_creation_of_payment(call:CallbackQuery):
 @dp.callback_query_handler(subscribe_callback.filter(type='free_pass'))
 async def handle_creation_of_payment(call:CallbackQuery):
     today = datetime.date.today()
-    Omsk_hour = datetime.timedelta(days=95)
+    Omsk_hour = datetime.timedelta(days=8)
     Omsk_hours = today + Omsk_hour
     Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
     new_sub_expiration = Omsk_hours

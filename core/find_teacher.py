@@ -174,8 +174,10 @@ def get_teacher_schedule(name, date, choice):
 
     rez = ' '
 
-    lecturer_title = lecturer_title.split()
-    lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
+    # lecturer_title = lecturer_title.split()
+    # # print(lecturer_title)
+    # lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
+    # print(lecturer_title)
 
     for i in range(len(discipline_dict['disciplines'])):
 
@@ -195,6 +197,8 @@ def get_teacher_schedule(name, date, choice):
 
         if choice:
             lecturer_title = discipline_dict['lecturer_title'][i]
+            lecturer_title = lecturer_title.split()
+            lecturer_title = f'<code>{lecturer_title[1]}</code> {lecturer_title[2]} {lecturer_title[3]}'
             building = discipline_dict['building'][i]
             auditorium = discipline_dict['auditorium'][i]
         else:
@@ -216,6 +220,9 @@ def get_teacher_schedule(name, date, choice):
 
         # print('\n'.join(text))
         # print()
+    # lecturer_title = lecturer_title.split()
+    # lecturer_title = f'<code>{lecturer_title[1]}</code> {lecturer_title[2]} {lecturer_title[3]}'
+
     return f'Преподаватель: {lecturer_title}\n\n{rez}Сейчас идет: {even_odd()}'
 
 

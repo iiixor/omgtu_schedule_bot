@@ -25,7 +25,7 @@ date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
 
 @dp.message_handler(text=f'Найти преподавателя')
 async def prep(message:types.Message):
-    await message.answer('Введите фамилию преподавателя:', reply_markup=menu)
+    await message.answer(f'Введите фамилию преподавателя или его Ф.И.О:\n\n В формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)
 
 
 @dp.message_handler()
@@ -56,7 +56,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = False
     date = '2022.09.05'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '2p'))
 async def ponedelnik(call:CallbackQuery):
@@ -66,9 +66,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.06'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '3p'))
 async def ponedelnik(call:CallbackQuery):
@@ -78,9 +78,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.07'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '4p'))
 async def ponedelnik(call:CallbackQuery):
@@ -90,9 +90,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.08'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)    
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)    
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '5p'))
 async def ponedelnik(call:CallbackQuery):
@@ -102,9 +102,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.09'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '6p'))
 async def ponedelnik(call:CallbackQuery):
@@ -114,9 +114,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.10'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '7p'))
 async def ponedelnik(call:CallbackQuery):
@@ -126,9 +126,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.11'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '8p'))
 async def ponedelnik(call:CallbackQuery):
@@ -138,9 +138,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.12'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '9p'))
 async def ponedelnik(call:CallbackQuery):
@@ -150,9 +150,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.13'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '10p'))
 async def ponedelnik(call:CallbackQuery):
@@ -162,9 +162,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.14'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '11p'))
 async def ponedelnik(call:CallbackQuery):
@@ -174,9 +174,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.15'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '12p'))
 async def ponedelnik(call:CallbackQuery):
@@ -186,9 +186,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.16'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '13p'))
 async def ponedelnik(call:CallbackQuery):
@@ -198,9 +198,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.09.17'
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '15p'))
 async def ponedelnik(call:CallbackQuery):
@@ -214,7 +214,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = False
     date = Omsk_hours
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '16p'))
 async def ponedelnik(call:CallbackQuery):
@@ -228,4 +228,4 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = False
     date = time_tomorrow_Omsk
     text = get_teacher_schedule (teacher, date, sub_bool)
-    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
+    await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)

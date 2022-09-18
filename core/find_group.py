@@ -221,7 +221,7 @@ def find_group(group, date, choice):
         # print('\n'.join(text))
         # print()
 
-    return f'Группа: <code>{group}</code>\n\n{rez}Сейчас идет: {even_odd()}'    # print(rez)
+    return f'Группа: <code>{group}</code>\n\n{rez}Сейчас идет: <i>{even_odd()}</i>'    # print(rez)
 
 
 # find_group(2022.09'ПИ-202/2',".05", True)
