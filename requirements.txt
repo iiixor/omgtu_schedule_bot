@@ -8,4 +8,4 @@ lxml
 fake-useragent
 grequests
 datetime
-qiwip2p
+pyqiwip2p
