@@ -20,6 +20,8 @@ subscribe_callback = CallbackData('subscribe','type')
 
 raspisanie_callback = CallbackData('days', 'pn')
 
+raspisanie_callback_2 = CallbackData('days', 'pn')
+
 map_callback = CallbackData('map', 'type')
 
 prepod_callback = CallbackData('r', 'fio')

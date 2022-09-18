@@ -1,5 +1,7 @@
 import json
 from core.find_teacher import *
+import datetime
+
 
 def format_dayofweek(str):
     days = {
@@ -12,6 +14,14 @@ def format_dayofweek(str):
     "Thu":'Чт'
     }
     return days[str]
+
+def even_odd():
+    date = datetime.datetime.now().replace(second=0, microsecond=0)
+    wk = date.isocalendar()[1]
+    if (wk % 2 == 0):
+        return "Нижняя неделя"
+    else:
+        return "Верхняя неделя"
 
 def find_group(group, date, choice):
     import requests
@@ -97,6 +107,10 @@ def find_group(group, date, choice):
                     kindOfWork = kindOfWork.replace(':','',1)
                     kindOfWork = kindOfWork.replace('{','')
                     kindOfWork = kindOfWork.replace('[','')
+                    if kindOfWork == "Практические занятия":
+                        kindOfWork = 'Практика'
+                    if kindOfWork == "Лабораторные работы":
+                        kindOfWork = 'Лабы'
                     discipline_dict['kindOfWork'].append(kindOfWork)
                     continue
 
@@ -163,6 +177,9 @@ def find_group(group, date, choice):
 
     rez = ''
 
+    lecturer_title = lecturer_title.split()
+    lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
+
     for i in range(len(discipline_dict['disciplines'])):
         disciplines = discipline_dict['disciplines'][i]
         kindOfWork = discipline_dict['kindOfWork'][i]
@@ -183,18 +200,19 @@ def find_group(group, date, choice):
             lecturer_title = discipline_dict['lecturer_title'][i]
             building = discipline_dict['building'][i]
             auditorium = discipline_dict['auditorium'][i]
+            lecturer_title = lecturer_title.split()
+            lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
         else:
-            lecturer_title = 'Недосутпно в беслатной версии'
-            building = 'Недосутпно в беслатной версии'
-            auditorium = 'Недосутпно в беслатной версии'
+            lecturer_title = 'Недоступно'
+            building = 'Недоступно'
+            auditorium = 'Недоступно'
 
 
         text = [
-        f'Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
-        f'Время занятия</b>: {beginLesson} - {endLesson}',
-        f'Преподатель</b>: {lecturer_title}',
-        f'Корпус</b>: {building}',
-        f'Аудитория:</b> {auditorium}',
+        f'{count_lessons}. {disciplines} ({kindOfWork})',
+        f'{beginLesson} - {endLesson}',
+        f'{lecturer_title}',
+        f'{building} ---> {auditorium}',
         f'\n'
         ]
         # rez = ''
@@ -203,7 +221,7 @@ def find_group(group, date, choice):
         # print('\n'.join(text))
         # print()
 
-    return rez    # print(rez)
+    return f'Группа: <code>{group}</code>\n\n{rez}Сейчас идет: {even_odd()}'    # print(rez)
 
 
 # find_group(2022.09'ПИ-202/2',".05", True)

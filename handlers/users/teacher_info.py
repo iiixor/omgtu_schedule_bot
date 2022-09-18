@@ -1,5 +1,5 @@
 from aiogram import types
-from keyboards.inline.inline_days_of_week import Raspisanie
+from keyboards.inline.inline_days_of_week import *
 from loader import dp, bot
 
 
@@ -27,19 +27,23 @@ async def prep(message:types.Message):
 
 @dp.message_handler()
 async def prep(message:types.Message):
-    surmane = message.text
-    text = find_teacher(surmane)
+    print(message.text)
+    text = find_teacher(message.text)
     print(text)
     if '  ' in text:
         text = text.replace('  ','')
-    await message.answer(text, reply_markup=Raspisanie)
     if text != 'Преподатель с такой фамилией не найден!\nПопробуйте еще раз!':
+        await message.answer(text, reply_markup = Raspisanie_2)
         text = text.split()
         print(text[1:4])
-        database.change_value(path, message.from_user.id, 'find_teacher', text[1])
+        text = f'{text[1]}.{text[2][0]}.{text[3][0]}'
+        database.change_value(path, message.from_user.id, 'find_teacher', text)
+    else:
+        await message.answer(text)
+
     
 
-@dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
+@dp.callback_query_handler(raspisanie_callback_2.filter(pn = '1p'))
 async def ponedelnik(call:CallbackQuery):
     teacher = database.find_value(path, call.from_user.id , 'find_teacher')
     sub_format = database.find_value(path, call.from_user.id , 'sub_format')

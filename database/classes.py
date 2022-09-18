@@ -94,10 +94,10 @@ class Database():
 
 # creat db
 
-database = Database()
-database.path = 'users.db'
-path = database.path
-database.create_db()
+# database = Database()
+# database.path = 'users.db'
+# path = database.path
+# database.create_db()
 
 
 

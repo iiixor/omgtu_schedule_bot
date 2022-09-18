@@ -14,7 +14,7 @@ p2p = QiwiP2P(auth_key='eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9z
 
 
 banned_users = [
-    832723559
+    832723559,
 ]
 
 @dp.message_handler(user_id=banned_users)

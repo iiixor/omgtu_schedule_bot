@@ -1,3 +1,13 @@
+import datetime
+
+def even_odd():
+    date = datetime.datetime.now().replace(second=0, microsecond=0)
+    wk = date.isocalendar()[1]
+    if (wk % 2 == 0):
+        return "Нижняя неделя"
+    else:
+        return "Верхняя неделя"
+
 def find_teacher(name):
     import requests
     import fake_useragent
@@ -55,7 +65,6 @@ def format_dayofweek(str):
 
 def get_teacher_schedule(name, date, choice):
     import requests
-    import fake_useragent
     from bs4 import BeautifulSoup
 
     from core.get_teacher_id import get_teacher_id
@@ -77,6 +86,9 @@ def get_teacher_schedule(name, date, choice):
     count_lessons = 0
 
     id = get_teacher_id(name)
+
+    # print(id)
+
     link = f"https://rasp.omgtu.ru/api/schedule/person/{id}?start={date}&finish={date}&lng=2"
     responce = requests.get(link).text
     soup = BeautifulSoup(responce, 'lxml')
@@ -136,6 +148,10 @@ def get_teacher_schedule(name, date, choice):
             kindOfWork = kindOfWork.replace(':','',1)
             kindOfWork = kindOfWork.replace('{','')
             kindOfWork = kindOfWork.replace('[','')
+            if kindOfWork == "Практические занятия":
+                kindOfWork = 'Практика'
+            if kindOfWork == "Лабораторные работы":
+                kindOfWork = 'Лабы'
             discipline_dict['kindOfWork'].append(kindOfWork)
             continue
 
@@ -155,6 +171,11 @@ def get_teacher_schedule(name, date, choice):
     if len(discipline_dict['disciplines']) == 0:
         #print('<b>Пар нет</b>')
         return 'Пар нет'
+
+    rez = ' '
+
+    lecturer_title = lecturer_title.split()
+    lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
 
     for i in range(len(discipline_dict['disciplines'])):
 
@@ -177,27 +198,28 @@ def get_teacher_schedule(name, date, choice):
             building = discipline_dict['building'][i]
             auditorium = discipline_dict['auditorium'][i]
         else:
-            lecturer_title = 'Недосутпно в беслатной версии'
-            building = 'Недосутпно в беслатной версии'
-            auditorium = 'Недосутпно в беслатной версии'
+            lecturer_title = name
+            building = 'Недосутпно'
+            auditorium = 'Недосутпно'
 
 
         text = [
-        f'Предмет</b>: {count_lessons}я пара ({kindOfWork}) {disciplines}',
-        f'Время занятия</b>: {beginLesson} - {endLesson}',
-        f'Преподатель</b>: {lecturer_title}',
-        f'Корпус</b>: {building}',
-        f'Аудитория:</b> {auditorium}',
+        f'{count_lessons}. {disciplines} ({kindOfWork})',
+        f'{beginLesson} - {endLesson}',
+        f'{building} ---> {auditorium}',
+        f'\n',
 
 
         ]
 
+        rez = rez +'\n'.join(text)
+
         # print('\n'.join(text))
         # print()
-        return text
+    return f'Преподаватель: {lecturer_title}\n\n{rez}Сейчас идет: {even_odd()}'
 
 
 
 
 #find_group('ПИ-202/2',"2022.09.05", False)
-get_teacher_schedule('Панин','2022.09.05', True)
+# get_teacher_schedule('Панин','2022.09.05', True)

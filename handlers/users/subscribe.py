@@ -88,7 +88,7 @@ async def handle_creation_of_payment(call:CallbackQuery):
 @dp.callback_query_handler(subscribe_callback.filter(type='free_pass'))
 async def handle_creation_of_payment(call:CallbackQuery):
     today = datetime.date.today()
-    Omsk_hour = datetime.timedelta(days=1)
+    Omsk_hour = datetime.timedelta(days=95)
     Omsk_hours = today + Omsk_hour
     Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
     new_sub_expiration = Omsk_hours
@@ -106,7 +106,7 @@ async def handle_successful_payment(message: types.Message):
     if str(p2p.check(bill_id = bill_id).status) == "PAID":
         today = datetime.date.today()
         print(str(p2p.check(bill_id = bill_id).amount))
-        if str(p2p.check(bill_id = bill_id).amount) == "95.00":  
+        if str(p2p.check(bill_id = bill_id).amount) == "1.00":  
             Omsk_hour = datetime.timedelta(days=31)
         elif str(p2p.check(bill_id = bill_id).amount) == "495.00":
             Omsk_hour = datetime.timedelta(days=183)

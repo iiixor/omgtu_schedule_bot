@@ -3,12 +3,21 @@ from loader import dp
 from keyboards.inline.callback_datas import *
 from aiogram.types import CallbackQuery
 from keyboards.inline.inline_buildings import *
+from database.classes import *
 
 
 
 @dp.message_handler(text=f'Карта университета')
 async def map(message: types.Message):
-    await message.answer('Выберите корпус:', reply_markup=map_pg1)
+    database = Database()
+    database.path = 'database/users.db'
+    path = database.path
+    sub_format = database.find_value(path, message.from_user.id, "sub_format")
+    if sub_format != "Full" and sub_format != "Free_pass":
+        await message.answer('Недоступно в бесплатной версии') 
+    else:
+        await message.answer('Выберите корпус:', reply_markup=map_pg1)
+
 
 
 @dp.callback_query_handler(page_switcher_callback.filter(number = "1"))

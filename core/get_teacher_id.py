@@ -2,6 +2,7 @@ def get_teacher_id(name):
     if '.' in name:
         name = name.replace('.',' ')
         name = name.split()
+    
     all_teachers = []
 
 
@@ -10,7 +11,9 @@ def get_teacher_id(name):
         for teacher in all_teachers:
             teacher = teacher.replace('\n','')
             teacher_ziped = teacher.split(' : ')
-            teacher_ziped = teacher_ziped[0].split()
+            teacher_ziped = teacher_ziped[0].replace(".",' ')
+            teacher_ziped = teacher_ziped.split()
+
             if type(name) is list:
                 if name[0].upper() == teacher_ziped[0].upper():
                     if name[1].upper() in teacher_ziped[1].upper():
@@ -27,4 +30,4 @@ def get_teacher_id(name):
                     return id
         return f'Преподатель с такой фамилией не найден!\nПопробуйте еще раз'
 
-# get_teacher_id('панин')
+get_teacher_id('К')

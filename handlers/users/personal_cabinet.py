@@ -29,7 +29,7 @@ async def bot_data_request(message: types.Message):
     sub_format = database.find_value(path, message.from_user.id, 'sub_format')
     group = database.find_value(path, user_id, 'user_group')
     today = datetime.date.today()
-    if today >= sub_expiration:
+    if today >= sub_expiration and sub_format=="Free_pass":
         database.change_value(path, message.from_user.id, 'sub_format', 'Free_pass_used')
     # print(group)
 

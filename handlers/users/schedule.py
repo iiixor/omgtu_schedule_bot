@@ -246,16 +246,3 @@ async def segodnya(call: CallbackQuery):
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
-@dp.callback_query_handler(raspisanie_callback.filter(pn = '17'))
-async def segodnya(call: CallbackQuery):
-    text = f'Введите дату в формате:\n\n<b>Год.День.Месяц</b>\n\n<i>Например: 1980.05.29</i>'
-    await call.message.answer(text)
-
-
-@dp.message_handler(text_contains = ".")
-async def testtt(message:types.Message):
-    text = f'Проверка дата'
-    await message.answer(text)
-    
-
-
