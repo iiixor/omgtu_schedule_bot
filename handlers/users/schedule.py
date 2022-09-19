@@ -35,8 +35,8 @@ def even_odd():
 
 @dp.message_handler(text=f'Расписание')
 async def mmm(message:types.Message):
-    sub_format = database.find_value(path, message.from_user.id , 'sub_format')
-    group = database.find_value(path, message.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', message.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', message.from_user.id , 'user_group')
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = [
             f'Сейчас идет: <i>{even_odd()}</i> ',
@@ -52,8 +52,8 @@ async def mmm(message:types.Message):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -65,8 +65,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '2'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -77,8 +77,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '3'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -89,8 +89,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '4'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -101,8 +101,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '5'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -113,8 +113,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '6'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -125,8 +125,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '7'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -139,8 +139,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '8'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -151,8 +151,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '9'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -163,8 +163,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '10'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -175,8 +175,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '11'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -187,8 +187,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '12'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -199,8 +199,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '13'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -212,8 +212,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '14'))
 async def ponedelnik(call:CallbackQuery):
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -229,8 +229,8 @@ async def ponedelnik(call:CallbackQuery):
 async def segodnya(call: CallbackQuery):
     Omsk_hours = today + Omsk_hour
     Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -243,8 +243,8 @@ async def segodnya(call: CallbackQuery):
 async def segodnya(call: CallbackQuery):
     time_tomorrow_Omsk = today + date_time_tomorrow_for_OMSK
     time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
-    group = database.find_value(path, call.from_user.id , 'user_group')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    group = database.find_value(path,'users', call.from_user.id , 'user_group')
+    sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:

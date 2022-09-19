@@ -24,13 +24,13 @@ def str_to_date(str_date):
 @dp.message_handler(text=f'Личный кабинет')
 async def bot_data_request(message: types.Message):
     user_id = message.from_user.id
-    sub_expiration = database.find_value(path, message.from_user.id, 'sub_expiration')
+    sub_expiration = database.find_value(path,'users', message.from_user.id, 'sub_expiration')
     sub_expiration = str_to_date(sub_expiration)
-    sub_format = database.find_value(path, message.from_user.id, 'sub_format')
-    group = database.find_value(path, user_id, 'user_group')
+    sub_format = database.find_value(path,'users', message.from_user.id, 'sub_format')
+    group = database.find_value(path,'users', user_id, 'user_group')
     today = datetime.date.today()
     if today >= sub_expiration and sub_format=="Free_pass":
-        database.change_value(path, message.from_user.id, 'sub_format', 'Free_pass_used')
+        database.change_value(path,'users', message.from_user.id, 'sub_format', 'Free_pass_used')
     # print(group)
 
     subscribe_format=''
@@ -48,7 +48,7 @@ async def bot_data_request(message: types.Message):
         ]
         markup = subscribe_button_free_pass
     elif sub_format == 'Full' :
-        sub_expiration = database.find_value(path, user_id, 'sub_expiration')
+        sub_expiration = database.find_value(path,'users', user_id, 'sub_expiration')
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
@@ -58,7 +58,7 @@ async def bot_data_request(message: types.Message):
         ]
         markup = subscribe_button_cancel
     elif sub_format == 'Free_pass':
-        sub_expiration = database.find_value(path, user_id, 'sub_expiration')
+        sub_expiration = database.find_value(path,'users', user_id, 'sub_expiration')
         text = [
         f'<b>Ваше имя:</b> {message.from_user.full_name}',
         f'<b>Ваш ID:</b> {message.from_user.id}',
@@ -90,7 +90,7 @@ async def check_group_tg(message:types.Message):
         user_id = message.from_user.id
         new_value = message.text
         column = 'user_group'
-        database.change_value(path, user_id, column, new_value)
+        database.change_value(path,'users', user_id, column, new_value)
         await message.answer(text)
     else:
         await message.answer(text)

@@ -24,7 +24,7 @@ async def on_startup_notify(message: types.Message):
     path = database.path
     # print(database.find_all(path, 'user_id')
     message.text = message.text.replace('!n!','')
-    for user in database.find_all(path, 'user_id'):
+    for user in database.find_all(path, 'users', 'user_id'):
         try:
             await dp.bot.send_message(int(user[0]), message.text)
         except Exception as err:

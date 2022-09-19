@@ -51,37 +51,37 @@ async def choice_sub_format(call:CallbackQuery):
 
 @dp.callback_query_handler(subscribe_callback.filter(type='month'))
 async def handle_creation_of_payment(call:CallbackQuery):
-    check_bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+    check_bill_id = database.find_value(path, 'users', call.from_user.id, 'bill_id')
     if check_bill_id != "Empty":
         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
     else:
         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
         bill = p2p.bill(amount=95, lifetime=5, comment=comment)
-        database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
+        database.change_value(path, 'users', call.from_user.id, 'bill_id', bill.bill_id)
         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 
 
 @dp.callback_query_handler(subscribe_callback.filter(type='half_year'))
 async def handle_creation_of_payment(call:CallbackQuery):
-    check_bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+    check_bill_id = database.find_value(path, 'users', call.from_user.id, 'bill_id')
     if check_bill_id != "Empty":
         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
     else:
         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
         bill = p2p.bill(amount=495, lifetime=5, comment=comment)
-        database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
+        database.change_value(path, 'users', call.from_user.id, 'bill_id', bill.bill_id)
         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 
 
 @dp.callback_query_handler(subscribe_callback.filter(type='year'))
 async def handle_creation_of_payment(call:CallbackQuery):
-    check_bill_id = database.find_value(path, call.from_user.id, 'bill_id')
+    check_bill_id = database.find_value(path, 'users', call.from_user.id, 'bill_id')
     if check_bill_id != "Empty":
         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
     else:
         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
         bill = p2p.bill(amount=895, lifetime=5, comment=comment)
-        database.change_value(path, call.from_user.id, 'bill_id', bill.bill_id)
+        database.change_value(path, 'users', call.from_user.id, 'bill_id', bill.bill_id)
         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 
 
@@ -92,15 +92,15 @@ async def handle_creation_of_payment(call:CallbackQuery):
     Omsk_hours = today + Omsk_hour
     Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
     new_sub_expiration = Omsk_hours
-    database.change_value(path, call.from_user.id, 'sub_expiration', new_sub_expiration)
-    database.change_value(path, call.from_user.id, 'sub_format', 'Free_pass')
+    database.change_value(path, 'users', call.from_user.id, 'sub_expiration', new_sub_expiration)
+    database.change_value(path, 'users', call.from_user.id, 'sub_format', 'Free_pass')
     await call.message.answer(f'Поздравляем, Вам достпупен весь функционал до {new_sub_expiration} 🎉')
     
 
 @dp.message_handler(text="Проверить оплату")
 async def handle_successful_payment(message: types.Message):
     # bill: Bill = data.get("bill")
-    bill_id = database.find_value(path, message.from_user.id, 'bill_id')
+    bill_id = database.find_value(path, 'users', message.from_user.id, 'bill_id')
     print(str(p2p.check(bill_id = bill_id).amount))
     print(str(p2p.check(bill_id = bill_id).status))
     if str(p2p.check(bill_id = bill_id).status) == "PAID":
@@ -117,17 +117,17 @@ async def handle_successful_payment(message: types.Message):
         new_sub_expiration = Omsk_hours
         await message.answer("Оплата прошла")
         await message.answer(f'Поздравляем, Вам достпупен весь функционал до {new_sub_expiration} 🎉')
-        database.change_value(path, message.from_user.id, 'sub_expiration', new_sub_expiration)
-        database.change_value(path, message.from_user.id, 'sub_format', 'Full')
-        database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+        database.change_value(path, 'users', message.from_user.id, 'sub_expiration', new_sub_expiration)
+        database.change_value(path, 'users', message.from_user.id, 'sub_format', 'Full')
+        database.change_value(path, 'users', message.from_user.id, 'bill_id', 'Empty')
     elif str(p2p.check(bill_id = bill_id).status) == "WAITING" :
         await message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
     else:
-        database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+        database.change_value(path, 'users', message.from_user.id, 'bill_id', 'Empty')
         await message.answer("Оплата не прошла\n<i>Попробуйте сформировать новую ссылку</i>")
 
         
 @dp.message_handler(text = f'Отмена')
 async def cancel(message:types.Message):
-    database.change_value(path, message.from_user.id, 'bill_id', 'Empty')
+    database.change_value(path, 'users', message.from_user.id, 'bill_id', 'Empty')
     await message.answer('Вы отменили оплату.<i>Старая ссылка не действительна</i>')

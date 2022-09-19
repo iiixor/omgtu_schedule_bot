@@ -12,7 +12,7 @@ async def map(message: types.Message):
     database = Database()
     database.path = 'database/users.db'
     path = database.path
-    sub_format = database.find_value(path, message.from_user.id, "sub_format")
+    sub_format = database.find_value(path, 'users', message.from_user.id, "sub_format")
     if sub_format != "Full" and sub_format != "Free_pass":
         await message.answer('Недоступно в бесплатной версии') 
     else:

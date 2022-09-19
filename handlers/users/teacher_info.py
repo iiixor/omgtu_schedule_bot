@@ -40,7 +40,7 @@ async def prep(message:types.Message):
         text = text.split()
         print(text[1:4])
         text = f'{text[1]}.{text[2][0]}.{text[3][0]}'
-        database.change_value(path, message.from_user.id, 'find_teacher', text)
+        database.change_value(path, 'users', message.from_user.id, 'find_teacher', text)
     else:
         await message.answer(text)
 
@@ -48,8 +48,8 @@ async def prep(message:types.Message):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '1p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -60,8 +60,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '2p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -72,8 +72,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '3p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -84,8 +84,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '4p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -96,8 +96,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '5p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -108,8 +108,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '6p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -120,8 +120,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '7p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -132,8 +132,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '8p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -144,8 +144,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '9p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -156,8 +156,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '10p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -168,8 +168,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '11p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -180,8 +180,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '12p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -192,8 +192,8 @@ async def ponedelnik(call:CallbackQuery):
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '13p'))
 async def ponedelnik(call:CallbackQuery):
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -206,8 +206,8 @@ async def ponedelnik(call:CallbackQuery):
 async def ponedelnik(call:CallbackQuery):
     Omsk_hours = today + Omsk_hour
     Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
@@ -220,8 +220,8 @@ async def ponedelnik(call:CallbackQuery):
 async def ponedelnik(call:CallbackQuery):
     time_tomorrow_Omsk = today + date_time_tomorrow_for_OMSK
     time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
-    teacher = database.find_value(path, call.from_user.id , 'find_teacher')
-    sub_format = database.find_value(path, call.from_user.id , 'sub_format')
+    teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
+    sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
         sub_bool = True
     else:
