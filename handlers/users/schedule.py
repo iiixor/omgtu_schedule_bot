@@ -35,11 +35,19 @@ def even_odd():
 
 @dp.message_handler(text=f'Расписание')
 async def mmm(message:types.Message):
+    sub_format = database.find_value(path, message.from_user.id , 'sub_format')
     group = database.find_value(path, message.from_user.id , 'user_group')
-    text = [
-        f'Сейчас идет: <i>{even_odd()}</i> ',
-        f'Ваша группа: {group}'
-    ]
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = [
+            f'Сейчас идет: <i>{even_odd()}</i> ',
+            f'Ваша группа: {group}'
+        ]
+    else:
+        text = [
+            f'Сейчас идет: <i>{even_odd()}</i> ',
+            f'Ваша группа: {group}',
+            f'<i>В связи с бесплатной подпиской, часть полей недоступно</i>'
+        ]
     await message.answer("\n".join(text), reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
@@ -215,7 +223,7 @@ async def ponedelnik(call:CallbackQuery):
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
-#-------------------------------------------------------Кнопки сегодня + завтра + даты
+#-------------------------------------------------------Кнопки сегодня + завтра  
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '15'))
 async def segodnya(call: CallbackQuery):
