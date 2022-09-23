@@ -22,7 +22,8 @@ class Database():
     #             sub_format TEXT NOT NULL DEFAULT 'Free',
     #             sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
     #             bill_id TEXT NOT NULL DEFAULT 'Empty',
-    #             find_teacher TEXT NOT NULL DEFAULT 'Empty' 
+    #             find_teacher TEXT NOT NULL DEFAULT 'Empty',
+    #             referrer_id INTEGER 
     #         )    
     #         """
     #         cursor.executescript(query)

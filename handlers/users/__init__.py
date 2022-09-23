@@ -9,6 +9,7 @@ from .unviversity_map import dp
 from .schedule import dp
 from .personal_cabinet import dp
 from .teacher_info import dp
+from .referral import dp
 from .unknown_msg import dp
 
 

@@ -28,6 +28,8 @@ prepod_callback = CallbackData('r', 'fio')
 
 page_switcher_callback = CallbackData('page', 'number')
 
+referral_callback = CallbackData('pers', 'ref')
+
 
 
 
