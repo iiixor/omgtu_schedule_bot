@@ -177,8 +177,6 @@ def find_group(group, date, choice):
 
     rez = ''
 
-    lecturer_title = lecturer_title.split()
-    lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
 
     for i in range(len(discipline_dict['disciplines'])):
         disciplines = discipline_dict['disciplines'][i]
@@ -200,8 +198,9 @@ def find_group(group, date, choice):
             lecturer_title = discipline_dict['lecturer_title'][i]
             building = discipline_dict['building'][i]
             auditorium = discipline_dict['auditorium'][i]
-            lecturer_title = lecturer_title.split()
-            lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
+            if lecturer_title != f'Неизвестно':
+                lecturer_title = lecturer_title.split()
+                lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
         else:
             lecturer_title = 'Недоступно'
             building = 'Недоступно'

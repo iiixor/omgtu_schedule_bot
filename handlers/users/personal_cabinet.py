@@ -80,7 +80,7 @@ async def bot_data_request(message: types.Message):
 
 @dp.callback_query_handler(subscribe_callback.filter(type='group'))
 async def group_choose(call:CallbackQuery):
-    text = 'Введите номер группы\nНапример: <code>ПМм-221/1</code>'
+    text = 'Введите номер группы\nНапример: <code>НД-191</code>'
     await call.message.answer(text)
 
 @dp.message_handler(text_contains = "-")

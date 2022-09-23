@@ -4,6 +4,7 @@ from .command_start import dp
 from .command_menu import dp
 from .command_info import dp
 from .command_notify import dp
+from .command_contacs import dp
 from .subscribe import dp
 from .unviversity_map import dp
 from .schedule import dp
