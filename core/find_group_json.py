@@ -1,5 +1,9 @@
+from itertools import count
 import json
-from core.find_teacher import *
+import datetime
+
+# import find_teacher
+# from find_teacher import find_teacher
 
 # from database import classes
 
@@ -19,38 +23,82 @@ from core.find_teacher import *
 # 
 # for line in groups_info.items():
 #     print(line)
+def even_odd():
+    date = datetime.datetime.now().replace(second=0, microsecond=0)
+    wk = date.isocalendar()[1]
+    if (wk % 2 == 0):
+        return "Нижняя неделя"
+    else:
+        return "Верхняя неделя"
+
 
 def get_id_from_json(group):
-    with open(f'all_groups.json','r',encoding="utf-8") as file:
+    with open(f'core/all_groups.json','r',encoding="utf-8") as file:
         dic = json.load(file)
+        # print(dic[group])
         return dic[group]
 
-def find_group_json(date,group):
+def find_group_json(date,group, boolean):
+    if group == 'None':
+        return "<i>Выберете группу в личном кабинете</i>"
+    # import find_teacher
     from core.find_teacher import find_teacher
+
     group_id = get_id_from_json(group)
 
-    with open (f'jsons/{date}_№{group_id}.json') as file:
+    with open (f'core/jsons/{date}_№{group_id}.json') as file:
         json_dict = json.load(file)
+        if json_dict == []:
+            rez = 'Пар нет'
+            return f'Группа: <code>{group}</code>\n\n{rez}\n\nСейчас идет: <i>{even_odd()}</i>'
 
         # print(json_dict)
-
+        rez = ''
         for dic in json_dict:
             
             # group = dic['group']
             discipline = dic['discipline']
             auditorium = dic['auditorium']
             lecturer_title = dic['lecturer_title']
+            count_lesson = dic['contentTableOfLessonsName']
+            building = dic['building']
+            
+            kindOfWork = dic['kindOfWork']
+
+            if kindOfWork == "Практические занятия":
+                kindOfWork = 'Практика'
+            if kindOfWork == "Лабораторные работы":
+                kindOfWork = 'Лабы'
+            
             lecturer_title = find_teacher(lecturer_title)
+
             if lecturer_title == f'Преподатель с такой фамилией не найден!\nПопробуйте еще раз!':
                 lecturer_title = f'Неизвестно'
+            if lecturer_title != f'Неизвестно':
+                lecturer_title = lecturer_title.split()
+                lecturer_title = f'{lecturer_title[1]} {lecturer_title[2]} {lecturer_title[3]}'
          
             beginLesson = dic['beginLesson']
             endLesson = dic['endLesson']
+
+            if boolean == False:
+                lecturer_title = 'Недоступно'
+                building = 'Недоступно'
+                auditorium = 'Недоступно'
         
-            text = [discipline, auditorium, lecturer_title, beginLesson, endLesson,'']
+            text = [
+                f'{count_lesson}. {discipline}({kindOfWork})',
+                f'{beginLesson} - {endLesson}',
+                f'{lecturer_title}',
+                f'{building} ---> {auditorium}',
+                f'\n'
+            ]
             print('\n'.join(text))
+            rez = rez + '\n'.join(text)
+        return f'Группа: <code>{group}</code>\n\n{rez}Сейчас идет: <i>{even_odd()}</i>'
     
 
 # get_id_from_json('НД-191')
 # add_id_for_dp()
-find_group_json("2022.09.13","НД-191")
+
+# find_group_json("2022.09.12","НД-191", True)  

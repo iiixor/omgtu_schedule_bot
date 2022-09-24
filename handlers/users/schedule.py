@@ -9,11 +9,12 @@ from keyboards.inline.inline_days_of_week import *
 from keyboards.inline.callback_datas import *
 # from handlers.users.even_odd_week import *
 from database.classes import *
-from core.find_group import *
+from core.find_group_json import *
 
 #-------------------------------------------------------Время + даты по омску
 
 today = datetime.datetime.now().replace(second=0, microsecond=0)
+print(today.isoweekday())
 Omsk_hour = datetime.timedelta(hours=3)
 date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
 
@@ -22,6 +23,22 @@ database = Database()
 database.path = 'database/users.db'
 path = database.path
 
+weekdays = {
+    "1_Верхняя неделя":"2022.09.12",
+    "2_Верхняя неделя":"2022.09.13",
+    "3_Верхняя неделя":"2022.09.14",
+    "4_Верхняя неделя":"2022.09.15",
+    "5_Верхняя неделя":"2022.09.16",
+    "6_Верхняя неделя":"2022.09.17",
+    "7_Верхняя неделя":"2022.09.18",
+    "1_Нижняя неделя":"2022.09.19",
+    "2_Нижняя неделя":"2022.09.20",
+    "3_Нижняя неделя":"2022.09.21",
+    "4_Нижняя неделя":"2022.09.22",
+    "5_Нижняя неделя":"2022.09.23",
+    "6_Нижняя неделя":"2022.09.24",
+    "7_Нижняя неделя":"2022.09.25",
+}
 
 def even_odd():
     date = datetime.datetime.now().replace(second=0, microsecond=0)
@@ -30,6 +47,31 @@ def even_odd():
         return "Нижняя неделя"
     else:
         return "Верхняя неделя"
+
+def get_day(today):
+    weekdays = {
+    "1_Верхняя неделя":"2022.09.12",
+    "2_Верхняя неделя":"2022.09.13",
+    "3_Верхняя неделя":"2022.09.14",
+    "4_Верхняя неделя":"2022.09.15",
+    "5_Верхняя неделя":"2022.09.16",
+    "6_Верхняя неделя":"2022.09.17",
+    "7_Верхняя неделя":"2022.09.18",
+    "1_Нижняя неделя":"2022.09.19",
+    "2_Нижняя неделя":"2022.09.20",
+    "3_Нижняя неделя":"2022.09.21",
+    "4_Нижняя неделя":"2022.09.22",
+    "5_Нижняя неделя":"2022.09.23",
+    "6_Нижняя неделя":"2022.09.24",
+    "7_Нижняя неделя":"2022.09.25",
+    }
+    weekday=today.isoweekday()
+    week = even_odd()
+    weekday_full = str(weekday)+"_"+week
+    print(weekdays[weekday_full])
+    return weekdays[weekday_full]
+
+
 
 
 
@@ -58,8 +100,9 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.12'
+    print(group)
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
     # await call.message.answer(text = "Понедельник верхней недели")
 
@@ -71,8 +114,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.06'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.13'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '3'))
@@ -83,8 +126,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.07'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.14'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '4'))
@@ -95,8 +138,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.08'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.15'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '5'))
@@ -107,8 +150,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.09'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.16'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '6'))
@@ -119,8 +162,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.10'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.17'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '7'))
@@ -131,8 +174,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.11'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.18'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 #Первая неделя---------------------------------------------------------
@@ -145,8 +188,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.12'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.19'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '9'))
@@ -157,8 +200,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.13'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.20'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '10'))
@@ -169,8 +212,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.14'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.21'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '11'))
@@ -181,8 +224,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.15'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.22'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '12'))
@@ -193,8 +236,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.16'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.23'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '13'))
@@ -205,8 +248,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.17'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.24'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
@@ -218,8 +261,8 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.18'
-    text = find_group(group, date, sub_bool)
+    date = '2022.09.25'
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
@@ -228,7 +271,7 @@ async def ponedelnik(call:CallbackQuery):
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '15'))
 async def segodnya(call: CallbackQuery):
     Omsk_hours = today + Omsk_hour
-    Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
+    # Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
     group = database.find_value(path,'users', call.from_user.id , 'user_group')
     sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
@@ -236,13 +279,14 @@ async def segodnya(call: CallbackQuery):
     else:
         sub_bool = False
     date = Omsk_hours
-    text = find_group(group, date, sub_bool)
+    date = get_day(date)
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '16'))
 async def segodnya(call: CallbackQuery):
     time_tomorrow_Omsk = today + date_time_tomorrow_for_OMSK
-    time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
+    # time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
     group = database.find_value(path,'users', call.from_user.id , 'user_group')
     sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
@@ -250,7 +294,8 @@ async def segodnya(call: CallbackQuery):
     else:
         sub_bool = False
     date = time_tomorrow_Omsk
-    text = find_group(group, date, sub_bool)
+    date = get_day(date)
+    text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 

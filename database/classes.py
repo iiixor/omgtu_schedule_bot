@@ -31,18 +31,16 @@ class Database():
             # cursor.close()
             # db.close()
     
-    # def create_db(self):
-    #     with sqlite3.connect('users.db') as db:
-    #         cursor = db.cursor()
-    #         query = """
-    #         CREATE TABLE IF NOT EXISTS referral_link(
-    #             user_id INTEGER PRIMARY KEY,
-    #             user_name TEXT,
-    #             referral_id INTEGER NOT NULL DEFAULT 0 
-    #         )    
-    #         """
-    #         cursor.executescript(query)
-    #         db.commit()
+    def create_db(self):
+        with sqlite3.connect('users.db') as db:
+            cursor = db.cursor()
+            query = """CREATE TABLE IF NOT EXISTS groups_id(
+                id INTEGER PRIMARY KEY,
+                group_name TEXT,
+                group_id TEXT)""" 
+    
+            cursor.executescript(query)
+            db.commit()
 
     # values = [2378,'Egor','wyw']
 
@@ -62,6 +60,18 @@ class Database():
                 db.commit()
                 # cursor.close()
                 # db.close()
+    def write_in_db_groups(self, path, users, values):
+        with sqlite3.connect(path) as db:
+            cursor = db.cursor()
+            query = f'INSERT INTO {users} (id, group_name, group_id) VALUES (?, ?, ?)'  
+            try:
+                cursor.execute(query,values)
+                # return True
+            except sqlite3.IntegrityError:
+                # return False
+                print('#SQLITE3 Primary key is not unique')
+            finally:
+                db.commit()
 
     #найти значени по id и названию колонки
 
