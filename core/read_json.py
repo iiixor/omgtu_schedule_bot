@@ -9,16 +9,17 @@ for day in dates:
     for i in range(1001):
         # print(i)
         with open (f'jsons/2022.09.{day}_№{i}.json') as file:
+            print(f'jsons/2022.09.{day}_№{i}.json',end='\r')
             json_dict = json.load(file)
             if json_dict == []:
                 os.remove(f"jsons/2022.09.{day}_№{i}.json")
                 continue
-
-            try:
-                for i in json_dict:
-                    stream = i['stream']
-                    group = i["group"]
-                    sub_group = i["subGroup"]
+            for j in json_dict:
+                try:
+                    print(j)
+                    stream = j['stream']
+                    group = j["group"]
+                    sub_group = j["subGroup"]
                     if group == None and stream == None and sub_group == None:
                         os.remove(f"jsons/2022.09.{day}_№{i}.json")
 
@@ -33,8 +34,8 @@ for day in dates:
                         sub_group = re.sub('/',r';',sub_group)
                         os.rename(f"jsons/2022.09.{day}_№{i}.json",f"jsons/2022.09.{day}_{sub_group}.json")
 
-            except KeyError:
-                print(f'{day}.{i}')
-                continue
+                except KeyError:
+                    print(f'{day}.{i}')
+                    continue
                 
 
