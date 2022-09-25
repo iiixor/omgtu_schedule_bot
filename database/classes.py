@@ -97,11 +97,19 @@ class Database():
             # print(cursor.fetchone()[0])
 
             try:
-                return 'Ваш реферальный код найден!'
+                return cursor.fetchone()[0]
                 # return True
             except TypeError:
                 return 'Ваш код не верный\nПорпробуйте еще раз!'
-            
+
+    def check_ref_types(self, path, users, ref_types, column_name):
+        with sqlite3.connect(path) as db:
+            cursor = db.cursor()
+            cursor.execute(f"SELECT {column_name} FROM {users} WHERE referral_types = ?",[ref_types])
+            # db.commit()
+            # print(cursor.fetchone()[0])
+            return cursor.fetchone()[0]
+
             # db.commit()
             # cursor.close()
             # db.close()  

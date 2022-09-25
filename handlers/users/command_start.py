@@ -44,11 +44,19 @@ async def bot_data_request(message: types.Message):
     text = f'<b>Омский Поликек</b> приветсвует тебя, {message.from_user.full_name} 👋'
     await message.answer(text, reply_markup=menu)
 
-@dp.message_handler(text_contains = '1')
-async def bot_data_request(message: types.Message):
-    text = database.check_ref_code(path, "users", message.text, 'referrer_code')
-    await message.answer(text, reply_markup=menu)
-    await message.answer(f'<b>Омский Поликек</b> приветсвует тебя, {message.from_user.full_name} 👋')
+for i in range(10):
+    @dp.message_handler(text_contains = str(i))
+    async def bot_data_request(message: types.Message):
+        text = database.check_ref_code(path, "users", message.text, 'referrer_code')
+        reffer_code_id = database.check_ref_code(path, "users", message.text, 'user_id')
+        if reffer_code_id == message.from_user.id:
+            await message.answer('Вы не можете вводить свой реферальный код')
+        elif text == 'Ваш код не верный\nПорпробуйте еще раз!':
+            await message.answer(text)
+        else:     
+            database.change_value(path,"users",message.from_user.id, 'referral_types',message.text)
+            await message.answer('Ваш реферальный код найден!', reply_markup=menu)
+            await message.answer(f'<b>Омский Поликек</b> приветсвует тебя, {message.from_user.full_name} 👋')
 
 
 

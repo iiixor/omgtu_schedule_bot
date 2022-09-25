@@ -43,6 +43,9 @@ def time_sub_days(sub_expiration):
         dt = dt.split(', ')        
         return dt[0]
 
+def str_to_date(str_date):
+    return datetime.datetime.strptime(str_date,'%Y.%m.%d').date()
+
 
 @dp.callback_query_handler(subscribe_callback.filter(type='yes'))
 async def choice_sub_format(call:CallbackQuery):
@@ -56,7 +59,7 @@ async def handle_creation_of_payment(call:CallbackQuery):
         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
     else:
         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
-        bill = p2p.bill(amount=95, lifetime=5, comment=comment)
+        bill = p2p.bill(amount=1, lifetime=5, comment=comment)
         database.change_value(path, 'users', call.from_user.id, 'bill_id', bill.bill_id)
         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 
@@ -116,10 +119,38 @@ async def handle_successful_payment(message: types.Message):
         Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
         new_sub_expiration = Omsk_hours
         await message.answer("Оплата прошла")
-        await message.answer(f'Поздравляем, Вам достпупен весь функционал до {new_sub_expiration} 🎉')
+        await message.answer(f'Поздравляем, Вам достпупен весь функционал до {new_sub_expiration} 🎉', reply_markup=menu)
         database.change_value(path, 'users', message.from_user.id, 'sub_expiration', new_sub_expiration)
         database.change_value(path, 'users', message.from_user.id, 'sub_format', 'Full')
         database.change_value(path, 'users', message.from_user.id, 'bill_id', 'Empty')
+        referal_types = database.find_value(path,'users',message.from_user.id, 'referral_types')
+        print(referal_types)
+        print(type(referal_types))
+        if referal_types != 0:
+            referrer_id = database.check_ref_code(path, "users", referal_types, 'user_id')
+            sub_check = database.find_value(path, 'users',referrer_id, 'sub_format')
+            print(referrer_id)
+            print(sub_check)            
+            if sub_check == 'Full':
+                add_time = datetime.timedelta(days = 14)
+                sub_time_now = str_to_date(database.find_value(path,  'users',referrer_id, 'sub_expiration'))
+                sub_add = sub_time_now + add_time
+                sub_add = sub_add.strftime("%Y.%m.%d")
+                database.change_value(path, 'users',referrer_id, 'sub_expiration', sub_add)
+                referrals = database.find_value(path, 'users', referrer_id, 'referrals')
+                referrals +=1
+                database.change_value(path, 'users', referrer_id, 'referrals',referrals)
+            elif sub_check != 'Full':
+                database.change_value(path, 'users', referrer_id, 'sub_format','Full')
+                today = datetime.date.today()
+                add_time = datetime.timedelta(days = 14)
+                sub_add = today + add_time
+                sub_add = sub_add.strftime("%Y.%m.%d")
+                database.change_value(path, 'users',referrer_id, 'sub_expiration', sub_add)
+                referrals = database.find_value(path, 'users', referrer_id, 'referrals')
+                referrals +=1
+                database.change_value(path, 'users', referrer_id, 'referrals',referrals)
+
     elif str(p2p.check(bill_id = bill_id).status) == "WAITING" :
         await message.answer("Оплата не прошла\n<i>Попробуйте еще раз</i>")
     else:

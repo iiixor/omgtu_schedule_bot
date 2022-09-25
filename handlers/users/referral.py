@@ -16,5 +16,8 @@ path = database.path
 async def referral(call:CallbackQuery):
     user_id = call.from_user.id
     referral = database.find_value(path,'users', user_id, 'referrer_code')
-    text = f'Ваш реферальный код:<code>{referral}</code>'
-    await call.message.answer(text)
+    referrals = database.find_value(path, 'users',call.from_user.id, 'referrals')
+    text = [f'Ваш реферальный код: <code>{referral}</code>',
+            f'Рефералов: <i>{referrals}</i>'
+    ]    
+    await call.message.answer("\n".join(text))
