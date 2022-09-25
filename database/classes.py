@@ -1,15 +1,16 @@
 import sqlite3
 import time
 import datetime
+import random
 
 # from core.find_group import find_group
-
+ 
 
 class Database():
 
     path = 'users.db'
 
-    # создание базы-данных
+    # # создание базы-данных
     # def create_db(self):
     #     with sqlite3.connect('users.db') as db:
     #         cursor = db.cursor()
@@ -23,7 +24,7 @@ class Database():
     #             sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
     #             bill_id TEXT NOT NULL DEFAULT 'Empty',
     #             find_teacher TEXT NOT NULL DEFAULT 'Empty',
-    #             referrer_id INTEGER 
+    #             referrer_code TEXT NOT NULL DEFAULT 'Empty'
     #         )    
     #         """
     #         cursor.executescript(query)
@@ -31,16 +32,16 @@ class Database():
             # cursor.close()
             # db.close()
     
-    def create_db(self):
-        with sqlite3.connect('users.db') as db:
-            cursor = db.cursor()
-            query = """CREATE TABLE IF NOT EXISTS groups_id(
-                id INTEGER PRIMARY KEY,
-                group_name TEXT,
-                group_id TEXT)""" 
+    # def create_db(self):
+    #     with sqlite3.connect('users.db') as db:
+    #         cursor = db.cursor()
+    #         query = """CREATE TABLE IF NOT EXISTS groups_id(
+    #             id INTEGER PRIMARY KEY,
+    #             group_name TEXT,
+    #             group_id TEXT)""" 
     
-            cursor.executescript(query)
-            db.commit()
+    #         cursor.executescript(query)
+    #         db.commit()
 
     # values = [2378,'Egor','wyw']
 

@@ -17,7 +17,7 @@ subscribe_button_yes = InlineKeyboardMarkup(row_width=2, inline_keyboard=[
             InlineKeyboardButton(text=f'Написать в поддержку 👨‍🔧', callback_data=media_callback.new(platform='support'), url=ADMIN_LINK)
         ],
         [
-           InlineKeyboardButton(text=f'Реферальная ссылка', callback_data=referral_callback.new(ref='someone')) 
+           InlineKeyboardButton(text=f'Реферальная система', callback_data=referral_callback.new(ref='someone')) 
         ]
     ]
 )
