@@ -17,3 +17,14 @@ menu = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+y_n = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text=f'Да'),
+            KeyboardButton(text=f'Нет')
+        ],
+    ],
+    # делаем нормальный размер клавиатуры
+    resize_keyboard=True
+)
+

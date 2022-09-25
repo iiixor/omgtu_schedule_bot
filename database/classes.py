@@ -87,6 +87,23 @@ class Database():
             # cursor.close()
             # db.close()
 
+    def check_ref_code(self, path, users, ref_id, column_name):
+        with sqlite3.connect(path) as db:
+            cursor = db.cursor()
+            cursor.execute(f"SELECT {column_name} FROM {users} WHERE referrer_code = ?",[ref_id])
+            # db.commit()
+            # print(cursor.fetchone()[0])
+
+            try:
+                return 'Ваш реферальный код найден!'
+                # return True
+            except TypeError:
+                return 'Ваш код не верный\nПорпробуйте еще раз!'
+            
+            # db.commit()
+            # cursor.close()
+            # db.close()  
+
     #изменить значени по id и названию колонки
 
 
