@@ -58,7 +58,7 @@ async def handle_creation_of_payment(call:CallbackQuery):
         await call.message.answer('Вы получили ссылку на оплату в одном из прошлых сообщений. Пожалуйста, нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
     else:
         comment = str(call.from_user.id) + "_" + str(random.randint(1000, 9999))
-        bill = p2p.bill(amount=1, lifetime=5, comment=comment)
+        bill = p2p.bill(amount=95, lifetime=5, comment=comment)
         database.change_value(path, 'users', call.from_user.id, 'bill_id', bill.bill_id)
         await call.message.answer(text=f'Ваш счёт на оплату\n {bill.pay_url}\n\nСсылка действительна 5 минут, после завершения оплаты нажмите кнопку "Проверить оплату"', reply_markup=i_paid)
 
@@ -108,7 +108,7 @@ async def handle_successful_payment(message: types.Message):
     if str(p2p.check(bill_id = bill_id).status) == "PAID":
         today = datetime.date.today()
         print(str(p2p.check(bill_id = bill_id).amount))
-        if str(p2p.check(bill_id = bill_id).amount) == "1.00":  
+        if str(p2p.check(bill_id = bill_id).amount) == "95.00":  
             Omsk_hour = datetime.timedelta(days=31)
         elif str(p2p.check(bill_id = bill_id).amount) == "495.00":
             Omsk_hour = datetime.timedelta(days=183)
