@@ -38,7 +38,7 @@ def get_teacher_id_json(name):
     #     name = name.replace('.',' ')
     #     name = name.split()
     
-    with open(f'all_teachers_id.json','r', encoding='utf-8') as file:
+    with open(f'core/all_teachers_id.json','r', encoding='utf-8') as file:
         json_dict = json.load(file)
         print(json_dict[name])
 

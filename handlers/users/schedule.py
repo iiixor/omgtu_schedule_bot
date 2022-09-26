@@ -14,7 +14,6 @@ from core.find_group_json import *
 #-------------------------------------------------------Время + даты по омску
 
 today = datetime.datetime.now().replace(second=0, microsecond=0)
-print(today.isoweekday())
 Omsk_hour = datetime.timedelta(hours=3)
 date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
 
@@ -23,25 +22,10 @@ database = Database()
 database.path = 'database/users.db'
 path = database.path
 
-weekdays = {
-    "1_Верхняя неделя":"2022.09.12",
-    "2_Верхняя неделя":"2022.09.13",
-    "3_Верхняя неделя":"2022.09.14",
-    "4_Верхняя неделя":"2022.09.15",
-    "5_Верхняя неделя":"2022.09.16",
-    "6_Верхняя неделя":"2022.09.17",
-    "7_Верхняя неделя":"2022.09.18",
-    "1_Нижняя неделя":"2022.09.19",
-    "2_Нижняя неделя":"2022.09.20",
-    "3_Нижняя неделя":"2022.09.21",
-    "4_Нижняя неделя":"2022.09.22",
-    "5_Нижняя неделя":"2022.09.23",
-    "6_Нижняя неделя":"2022.09.24",
-    "7_Нижняя неделя":"2022.09.25",
-}
 
 def even_odd():
     date = datetime.datetime.now().replace(second=0, microsecond=0)
+    date = date + datetime.timedelta(hours=3)
     wk = date.isocalendar()[1]
     if (wk % 2 == 0):
         return "Нижняя неделя"
@@ -50,25 +34,24 @@ def even_odd():
 
 def get_day(today):
     weekdays = {
-    "1_Верхняя неделя":"2022.09.12",
-    "2_Верхняя неделя":"2022.09.13",
-    "3_Верхняя неделя":"2022.09.14",
-    "4_Верхняя неделя":"2022.09.15",
-    "5_Верхняя неделя":"2022.09.16",
-    "6_Верхняя неделя":"2022.09.17",
-    "7_Верхняя неделя":"2022.09.18",
-    "1_Нижняя неделя":"2022.09.19",
-    "2_Нижняя неделя":"2022.09.20",
-    "3_Нижняя неделя":"2022.09.21",
-    "4_Нижняя неделя":"2022.09.22",
-    "5_Нижняя неделя":"2022.09.23",
-    "6_Нижняя неделя":"2022.09.24",
-    "7_Нижняя неделя":"2022.09.25",
+    "1_Верхняя неделя":"2022.10.03",
+    "2_Верхняя неделя":"2022.10.04",
+    "3_Верхняя неделя":"2022.10.05",
+    "4_Верхняя неделя":"2022.10.06",
+    "5_Верхняя неделя":"2022.10.07",
+    "6_Верхняя неделя":"2022.10.08",
+    "7_Верхняя неделя":"2022.10.09",
+    "1_Нижняя неделя":"2022.10.10",
+    "2_Нижняя неделя":"2022.10.12",
+    "3_Нижняя неделя":"2022.10.13",
+    "4_Нижняя неделя":"2022.10.14",
+    "5_Нижняя неделя":"2022.10.15",
+    "6_Нижняя неделя":"2022.10.16",
+    "7_Нижняя неделя":"2022.10.17",
     }
     weekday=today.isoweekday()
     week = even_odd()
     weekday_full = str(weekday)+"_"+week
-    print(weekdays[weekday_full])
     return weekdays[weekday_full]
 
 
@@ -79,18 +62,21 @@ def get_day(today):
 async def mmm(message:types.Message):
     sub_format = database.find_value(path,'users', message.from_user.id , 'sub_format')
     group = database.find_value(path,'users', message.from_user.id , 'user_group')
-    if sub_format == 'Full' or sub_format == "Free_pass":
-        text = [
-            f'Сейчас идет: <i>{even_odd()}</i> ',
-            f'Ваша группа: {group}'
-        ]
+    if group == "None":
+        await message.answer('<i>Укажите группу в личном кабинете</i>')
     else:
-        text = [
-            f'Сейчас идет: <i>{even_odd()}</i> ',
-            f'Ваша группа: {group}',
-            f'<i>В связи с бесплатной подпиской, часть полей недоступно</i>'
-        ]
-    await message.answer("\n".join(text), reply_markup=Raspisanie)
+        if sub_format == 'Full' or sub_format == "Free_pass":
+            text = [
+                f'Сейчас идет: <i>{even_odd()}</i> ',
+                f'Ваша группа: <code>{group}</code>'
+            ]
+        else:
+            text = [
+                f'Сейчас идет: <i>{even_odd()}</i> ',
+                f'Ваша группа: <code>{group}</code>',
+                f'<i>В связи с бесплатной подпиской, часть полей недоступно</i>'
+            ]
+        await message.answer("\n".join(text), reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '1'))
 async def ponedelnik(call:CallbackQuery):
@@ -101,7 +87,6 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = '2022.10.03'
-    print(group)
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
     # await call.message.answer(text = "Понедельник верхней недели")
@@ -111,7 +96,7 @@ async def ponedelnik(call:CallbackQuery):
     group = database.find_value(path,'users', call.from_user.id , 'user_group')
     sub_format = database.find_value(path,'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
-        sub_bool = True
+        sub_bool = True 
     else:
         sub_bool = False
     date = '2022.10.04'

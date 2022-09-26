@@ -10,7 +10,6 @@ with open('core/all_teachers.txt', 'r') as file:
         line = line.replace('\n','')
         line = line.split(' : ')
         full_name = line[0].split()
-        print(full_name)
         full_name[0] = full_name[0].upper()
         full_name[1] = full_name[1][0].upper()
         try:
@@ -18,7 +17,6 @@ with open('core/all_teachers.txt', 'r') as file:
         except IndexError:
             continue
         full_name = f'{full_name[0]} {full_name[1]}.{full_name[2]}.'
-        print(full_name)
         link = f"https://rasp.omgtu.ru/api/search?term={full_name}&type=person"
         responce = requests.get(link).text
         soup = BeautifulSoup(responce, 'lxml')
@@ -33,7 +31,6 @@ with open('core/all_teachers.txt', 'r') as file:
                     id = id.replace('{','')
                     all_teachers_id.append(f'{full_name} : {id}')
                     all_teachers_id = list(set(all_teachers_id))
-                    print(f'{full_name} : {id}')
 
 sum = 0
 #
@@ -44,4 +41,3 @@ with open('all_teachers_id.txt','w') as f:
         else:
             sum+=1
             f.write(f'{line}\n')
-            print(f'{line}')

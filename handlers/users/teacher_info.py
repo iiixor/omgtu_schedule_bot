@@ -6,7 +6,6 @@ from loader import dp, bot
 from core import *
 from core.find_teacher import *
 from keyboards.inline.callback_datas import *
-from parsing_data.parsing_main import *
 from keyboards.default.menu import *
 from keyboards.inline.inline_subscribe import *
 from keyboards.default.menu import menu
@@ -30,15 +29,12 @@ async def prep(message:types.Message):
 
 @dp.message_handler()
 async def prep(message:types.Message):
-    print(message.text)
     text = find_teacher(message.text)
-    print(text)
     if '  ' in text:
         text = text.replace('  ','')
     if text != 'Преподатель с такой фамилией не найден!\nПопробуйте еще раз!':
         await message.answer(text, reply_markup = Raspisanie_2)
         text = text.split()
-        print(text[1:4])
         text = f'{text[1]}.{text[2][0]}.{text[3][0]}'
         database.change_value(path, 'users', message.from_user.id, 'find_teacher', text)
     else:

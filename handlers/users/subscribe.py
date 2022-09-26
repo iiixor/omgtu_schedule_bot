@@ -9,7 +9,6 @@ import datetime
 
 from keyboards.inline.callback_datas import *
 from filters.emoji import *
-from parsing_data.parsing_main import *
 from keyboards.default.menu import *
 from keyboards.inline.inline_subscribe import *
 from keyboards.default.pay_status import *
@@ -124,13 +123,9 @@ async def handle_successful_payment(message: types.Message):
         database.change_value(path, 'users', message.from_user.id, 'sub_format', 'Full')
         database.change_value(path, 'users', message.from_user.id, 'bill_id', 'Empty')
         referal_types = database.find_value(path,'users',message.from_user.id, 'referral_types')
-        print(referal_types)
-        print(type(referal_types))
         if referal_types != 0:
             referrer_id = database.check_ref_code(path, "users", referal_types, 'user_id')
-            sub_check = database.find_value(path, 'users',referrer_id, 'sub_format')
-            print(referrer_id)
-            print(sub_check)            
+            sub_check = database.find_value(path, 'users',referrer_id, 'sub_format')         
             if sub_check == 'Full':
                 add_time = datetime.timedelta(days = 14)
                 sub_time_now = str_to_date(database.find_value(path,  'users',referrer_id, 'sub_expiration'))

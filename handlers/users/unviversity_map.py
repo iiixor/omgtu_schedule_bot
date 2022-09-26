@@ -23,18 +23,15 @@ async def map(message: types.Message):
 @dp.callback_query_handler(page_switcher_callback.filter(number = "1"))
 async def M(call:CallbackQuery):
     await call.message.edit_text(text = "Выберите корпус:", reply_markup=map_pg1)
-    print (call.message.message_id)
 
 
 @dp.callback_query_handler(page_switcher_callback.filter(number = "2"))
 async def D(call:CallbackQuery):
     await call.message.edit_text(text = "Выберите корпус:", reply_markup=map_pg2)
-    print (call.message.message_id)
 
 @dp.callback_query_handler(page_switcher_callback.filter(number = "3"))
 async def M(call:CallbackQuery):
     await call.message.edit_text(text = "Выберите корпус:", reply_markup=map_pg3)
-    print (call.message.message_id)
 
 
 #-----------------------------------------------------------Гео кнопкам

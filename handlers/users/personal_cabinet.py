@@ -5,7 +5,6 @@ from aiogram.types import CallbackQuery
 
 from keyboards.inline.callback_datas import *
 from filters.emoji import *
-from parsing_data.parsing_main import *
 from keyboards.default.menu import *
 from keyboards.inline.inline_subscribe import *
 from data.config import admins
@@ -30,6 +29,8 @@ async def bot_data_request(message: types.Message):
     group = database.find_value(path,'users', user_id, 'user_group')
     today = datetime.date.today()
     if today >= sub_expiration and sub_format=="Free_pass":
+        database.change_value(path,'users', message.from_user.id, 'sub_format', 'Free_pass_used')
+    if today >= sub_expiration and sub_format=="Full":
         database.change_value(path,'users', message.from_user.id, 'sub_format', 'Free_pass_used')
     # print(group)
 

@@ -25,6 +25,7 @@ import datetime
 #     print(line)
 def even_odd():
     date = datetime.datetime.now().replace(second=0, microsecond=0)
+    date = date + datetime.timedelta(hours=3)
     wk = date.isocalendar()[1]
     if (wk % 2 == 0):
         return "Нижняя неделя"
@@ -46,7 +47,8 @@ def find_group_json(date,group, boolean):
 
     group_id = get_id_from_json(group)
 
-    with open (f'core/jsons/{date}_№{group_id}.json') as file:
+    with open (f'core/jsons/file_{date}_№{group_id}.json') as file:
+
         json_dict = json.load(file)
         if json_dict == []:
             rez = 'Пар нет'
