@@ -54,7 +54,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.05'
+    date = '2022.10.03'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -66,7 +66,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.06'
+    date = '2022.10.04'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -78,7 +78,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.07'
+    date = '2022.10.05'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -90,7 +90,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.08'
+    date = '2022.10.06'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)    
 
@@ -102,7 +102,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.09'
+    date = '2022.10.07'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -114,7 +114,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.10'
+    date = '2022.10.08'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -126,7 +126,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.11'
+    date = '2022.10.09'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -138,7 +138,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.12'
+    date = '2022.10.10'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -150,7 +150,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.13'
+    date = '2022.10.11'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -162,7 +162,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.14'
+    date = '2022.10.12'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -174,7 +174,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.15'
+    date = '2022.10.13'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -186,7 +186,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.16'
+    date = '2022.10.14'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
@@ -198,7 +198,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.17'
+    date = '2022.10.15'
     text = get_teacher_schedule (teacher, date, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 

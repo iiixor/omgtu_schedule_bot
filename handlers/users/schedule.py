@@ -100,7 +100,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.12'
+    date = '2022.10.03'
     print(group)
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
@@ -114,7 +114,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.13'
+    date = '2022.10.04'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -126,7 +126,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.14'
+    date = '2022.10.05'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -138,7 +138,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.15'
+    date = '2022.10.06'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -150,7 +150,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.16'
+    date = '2022.10.07'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -162,7 +162,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.17'
+    date = '2022.10.08'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -174,7 +174,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.18'
+    date = '2022.10.09'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -188,7 +188,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.19'
+    date = '2022.10.10'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -200,7 +200,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.20'
+    date = '2022.10.11'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -212,7 +212,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.21'
+    date = '2022.10.12'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -224,7 +224,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.22'
+    date = '2022.10.13'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -236,7 +236,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.23'
+    date = '2022.10.14'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -248,7 +248,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.24'
+    date = '2022.10.15'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
@@ -261,7 +261,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.09.25'
+    date = '2022.10.16'
     text = find_group_json(date, group, sub_bool)
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
