@@ -28,9 +28,9 @@ def even_odd():
     date = date + datetime.timedelta(hours=3)
     wk = date.isocalendar()[1]
     if (wk % 2 == 0):
-        return "Нижняя неделя"
-    else:
         return "Верхняя неделя"
+    else:
+        return "Нижняя неделя"
 
 def get_day(today):
     weekdays = {
@@ -42,12 +42,12 @@ def get_day(today):
     "6_Верхняя неделя":"2022.10.08",
     "7_Верхняя неделя":"2022.10.09",
     "1_Нижняя неделя":"2022.10.10",
-    "2_Нижняя неделя":"2022.10.12",
-    "3_Нижняя неделя":"2022.10.13",
-    "4_Нижняя неделя":"2022.10.14",
-    "5_Нижняя неделя":"2022.10.15",
-    "6_Нижняя неделя":"2022.10.16",
-    "7_Нижняя неделя":"2022.10.17",
+    "2_Нижняя неделя":"2022.10.11",
+    "3_Нижняя неделя":"2022.10.12",
+    "4_Нижняя неделя":"2022.10.13",
+    "5_Нижняя неделя":"2022.10.14",
+    "6_Нижняя неделя":"2022.10.15",
+    "7_Нижняя неделя":"2022.10.16",
     }
     weekday=today.isoweekday()
     week = even_odd()
@@ -70,11 +70,19 @@ async def mmm(message:types.Message):
                 f'Сейчас идет: <i>{even_odd()}</i> ',
                 f'Ваша группа: <code>{group}</code>'
             ]
+        elif sub_format == 'Free':
+            text = [
+                f'Сейчас идет: <i>{even_odd()}</i> ',
+                f'Ваша группа: <code>{group}</code>',
+                f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>',
+                f'<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>',
+            ]
         else:
             text = [
                 f'Сейчас идет: <i>{even_odd()}</i> ',
                 f'Ваша группа: <code>{group}</code>',
-                f'<i>В связи с бесплатной подпиской, часть полей недоступно</i>'
+                f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>',
+                f'<u><b>Подписку можно оформить в личном кабинете</b></u>',
             ]
         await message.answer("\n".join(text), reply_markup=Raspisanie)
 
@@ -86,8 +94,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.03'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.10'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
     # await call.message.answer(text = "Понедельник верхней недели")
 
@@ -99,8 +112,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True 
     else:
         sub_bool = False
-    date = '2022.10.04'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.11'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '3'))
@@ -111,8 +129,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.05'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.12'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '4'))
@@ -123,8 +146,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.06'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.13'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '5'))
@@ -135,8 +163,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.07'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.14'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '6'))
@@ -147,8 +180,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.08'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.15'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '7'))
@@ -159,8 +197,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.09'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.16'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 #Первая неделя---------------------------------------------------------
@@ -173,8 +216,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.10'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.03'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '9'))
@@ -185,8 +233,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.11'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.04'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '10'))
@@ -197,8 +250,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.12'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.05'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '11'))
@@ -209,8 +267,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.13'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.06'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '12'))
@@ -221,8 +284,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.14'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.07'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '13'))
@@ -233,8 +301,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.15'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.08'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
@@ -246,8 +319,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.16'
-    text = find_group_json(date, group, sub_bool)
+    date = '2022.10.09'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 
@@ -265,7 +343,12 @@ async def segodnya(call: CallbackQuery):
         sub_bool = False
     date = Omsk_hours
     date = get_day(date)
-    text = find_group_json(date, group, sub_bool)
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 @dp.callback_query_handler(raspisanie_callback.filter(pn = '16'))
@@ -280,7 +363,12 @@ async def segodnya(call: CallbackQuery):
         sub_bool = False
     date = time_tomorrow_Omsk
     date = get_day(date)
-    text = find_group_json(date, group, sub_bool)
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = find_group_json(date, group, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
 
 

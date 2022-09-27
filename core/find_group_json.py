@@ -47,7 +47,7 @@ def find_group_json(date,group, boolean):
 
     group_id = get_id_from_json(group)
 
-    with open (f'core/jsons/file_{date}_№{group_id}.json') as file:
+    with open (f'core/jsons/file_{date}_№{group_id}.json', encoding = 'utf-8') as file:
 
         json_dict = json.load(file)
         if json_dict == []:

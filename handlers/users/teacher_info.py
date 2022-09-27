@@ -24,7 +24,14 @@ date_time_tomorrow_for_OMSK = datetime.timedelta(days= 1, hours =3)
 
 @dp.message_handler(text=f'Найти преподавателя')
 async def prep(message:types.Message):
-    await message.answer(f'Введите фамилию преподавателя или его Ф.И.О:\n\n В формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)
+    sub_format = database.find_value(path, 'users', message.from_user.id , 'sub_format')
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        await message.answer(f'Введите фамилию преподавателя или его Ф.И.О:\n\n В формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)
+    elif sub_format == 'Free':
+        await message.answer(f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n\n Введите фамилию преподавателя или его Ф.И.О:\n\n В формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)
+    else:
+        await message.answer(f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n\n Введите фамилию преподавателя или его Ф.И.О:\n\n В формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)    
+        
 
 
 @dp.message_handler()
@@ -50,8 +57,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.03'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.09'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{get_teacher_schedule(teacher, date, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '2p'))
@@ -62,8 +74,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.04'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.10'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n,{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '3p'))
@@ -74,8 +91,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.05'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.11'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '4p'))
@@ -86,8 +108,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.06'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.12'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)    
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '5p'))
@@ -98,8 +125,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.07'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.13'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '6p'))
@@ -110,8 +142,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.08'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.14'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '7p'))
@@ -122,8 +159,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.09'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.15'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '8p'))
@@ -134,8 +176,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.10'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.03'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '9p'))
@@ -146,8 +193,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.11'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.04'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '10p'))
@@ -158,8 +210,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.12'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.05'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '11p'))
@@ -170,8 +227,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.13'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.06'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '12p'))
@@ -182,8 +244,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.14'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.07'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '13p'))
@@ -194,8 +261,13 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.15'
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    date = '2022.10.08'
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '15p'))
@@ -209,7 +281,12 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = Omsk_hours
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
 
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '16p'))
@@ -223,5 +300,10 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = time_tomorrow_Omsk
-    text = get_teacher_schedule (teacher, date, sub_bool)
+    if sub_format == 'Full' or sub_format == "Free_pass":
+        text = get_teacher_schedule(teacher, date, sub_bool)
+    elif sub_format == 'Free':
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u>\n{get_teacher_schedule(teacher, date, sub_bool)}'
+    else:
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>',{get_teacher_schedule(teacher, date, sub_bool)}
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie_2)
