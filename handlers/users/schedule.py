@@ -98,7 +98,7 @@ async def ponedelnik(call:CallbackQuery):
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = find_group_json(date, group, sub_bool)
     elif sub_format == 'Free':
-        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на 2 недели в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
+        text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Вы можете оформить пробную подписку на неделю в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     else:
         text = f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u> \n{find_group_json(date, group, sub_bool)}'
     await call.message.edit_text(text, disable_web_page_preview=True, reply_markup=Raspisanie)
