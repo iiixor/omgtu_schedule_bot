@@ -10,23 +10,24 @@ class Database():
     path = 'users.db'
 
     # создание базы-данных
-    # def create_db(self):
-    #     with sqlite3.connect('users.db') as db:
-    #         cursor = db.cursor()
-    #         query = """
-    #         CREATE TABLE IF NOT EXISTS users(
-    #             user_id INTEGER PRIMARY KEY,
-    #             name TEXT,
-    #             user_name TEXT,
-    #             user_group TEXT NOT NULL DEFAULT 'None',
-    #             sub_format TEXT NOT NULL DEFAULT 'Free',
-    #             sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
-    #             bill_id TEXT NOT NULL DEFAULT 'Empty',
-    #             find_teacher TEXT NOT NULL DEFAULT 'Empty' 
-    #         )    
-    #         """
-    #         cursor.executescript(query)
-    #         db.commit()
+    def create_db(self):
+        with sqlite3.connect('users.db') as db:
+            cursor = db.cursor()
+            query = """
+            CREATE TABLE IF NOT EXISTS users(
+                user_id INTEGER PRIMARY KEY,
+                name TEXT,
+                user_name TEXT,
+                user_group TEXT NOT NULL DEFAULT 'None',
+                sub_format TEXT NOT NULL DEFAULT 'Free',
+                sub_expiration TEXT NOT NULL DEFAULT '2007.07.07',
+                bill_id TEXT NOT NULL DEFAULT 'Empty',
+                find_teacher TEXT NOT NULL DEFAULT 'Empty',
+                referrer_id INTEGER
+            )    
+            """
+            cursor.executescript(query)
+            db.commit()
             # cursor.close()
             # db.close()
     
@@ -104,10 +105,10 @@ class Database():
 
 # creat db
 
-# database = Database()
-# database.path = 'users.db'
-# path = database.path
-# database.create_db()
+database = Database()
+database.path = 'users.db'
+path = database.path
+database.create_db()
 
 
 

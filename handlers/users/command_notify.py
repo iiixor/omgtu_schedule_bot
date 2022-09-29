@@ -5,7 +5,6 @@ import logging
 from loader import dp, bot
 # достаем menu из дир-и delpy_bot -> keyboards -> default
 from keyboards.default import menu
-from filters.emoji import *
 from database.classes import *
 from data.config import admins
 from database.classes import *

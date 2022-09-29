@@ -8,13 +8,10 @@ import datetime
 
 
 from keyboards.inline.callback_datas import *
-from filters.emoji import *
-from parsing_data.parsing_main import *
 from keyboards.default.menu import *
 from keyboards.inline.inline_subscribe import *
 from keyboards.default.pay_status import *
 from handlers.users.personal_cabinet import *
-from core.check_group import * 
 from database.classes import *
 
 
