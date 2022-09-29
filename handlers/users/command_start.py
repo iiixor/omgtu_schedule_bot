@@ -20,7 +20,7 @@ async def bot_start(message: types.Message):
     name = message.from_user.first_name
     user_name = message.from_user.username
 
-    database.write_in_db(path,'users',[user_id, name, user_name])
+    database.write_in_db([user_id, name, user_name])
     sub_format = database.find_value(path, "users", message.from_user.id,'sub_format')
     referrer_code = database.find_value(path, 'users', message.from_user.id, 'referrer_code')
     rand = random.randint(1000000000000000,9999999999999999)
