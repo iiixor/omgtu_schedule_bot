@@ -418,9 +418,9 @@ class Database():
 # creat db
 
 database = Database()
-database.check_version()
+# database.check_version()
 # database.drop_db()
-database.create_db()
+# database.create_db()
 # database.write_in_db([83777,'wywdelpy','egor'])
 
 
