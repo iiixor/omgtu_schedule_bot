@@ -64,7 +64,6 @@ def find_group_json(date,group, boolean):
             lecturer_title = dic['lecturer_title']
             count_lesson = dic['contentTableOfLessonsName']
             building = dic['building']
-            sub_group = dic['subGroup']
             
             kindOfWork = dic['kindOfWork']
 
@@ -96,17 +95,12 @@ def find_group_json(date,group, boolean):
                 f'{building} ---> {auditorium}',
                 f'\n'
             ]
-            # print('\n'.join(text))
-            sub_group = dic['subGroup']
-            if sub_group == group or sub_group == None:
-                # print(sub_group)
-                rez = rez + '\n'.join(text)
-            else:
-                continue
+            print('\n'.join(text))
+            rez = rez + '\n'.join(text)
         return f'Группа: <code>{group}</code>\n\n{rez}Сейчас идет: <i>{even_odd()}</i>'
     
 
 # get_id_from_json('НД-191')
 # add_id_for_dp()
 
-# print(find_group_json("2022.10.14","НД-191/1", True))
+# find_group_json("2022.09.12","НД-191", True)  

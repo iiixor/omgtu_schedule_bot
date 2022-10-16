@@ -9,4 +9,3 @@ fake-useragent
 grequests
 datetime
 pyqiwip2p
-psycopg2-binary

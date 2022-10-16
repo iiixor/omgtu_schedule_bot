@@ -1,44 +1,41 @@
+from asyncio import streams
 import json
-from tokenize import group
-dates = ["03","04","05","06","07","08","09","10","11","12","13","14","15","16"]
+import os
+import re
 
-all_subs = {}
+dates = ["12","13","14","15","16","17","18","19","20","21","22","23","24","25"]
 
 for day in dates:
-    for i in range(1,1000):
-        try:
-            with open (f'jsons/file_2022.10.{day}_№{i}.json') as file:
-                dict = json.load(file) 
+    for i in range(1001):
+        # print(i)
+        with open (f'jsons/2022.09.{day}_№{i}.json') as file:
+            print(f'jsons/2022.09.{day}_№{i}.json',end='\r')
+            json_dict = json.load(file)
+            if json_dict == []:
+                os.remove(f"jsons/2022.09.{day}_№{i}.json")
+                continue
+            for j in json_dict:
+                try:
+                    print(j)
+                    stream = j['stream']
+                    group = j["group"]
+                    sub_group = j["subGroup"]
+                    if group == None and stream == None and sub_group == None:
+                        os.remove(f"jsons/2022.09.{day}_№{i}.json")
 
+                    if group != None:
+                        if '/' in group:
+                            group = re.sub('/',r';',group)
+                        os.rename(f"jsons/2022.09.{day}_№{i}.json",f"jsons/2022.09.{day}_{group}.json")
+                    elif stream != None:
+                        stream = re.sub('/',r';',stream)
+                        os.rename(f"jsons/2022.09.{day}_№{i}.json",f"jsons/2022.09.{day}_{stream}.json")
+                    elif sub_group != None:
+                        sub_group = re.sub('/',r';',sub_group)
+                        os.rename(f"jsons/2022.09.{day}_№{i}.json",f"jsons/2022.09.{day}_{sub_group}.json")
+
+                except KeyError:
+                    print(f'{day}.{i}')
+                    continue
                 
-                for dic in dict:
-                    # print(dic)
-                    try: 
-                        sub_group = dic['subGroup']
-                        if sub_group == None:
-                            continue
-                        all_subs[sub_group] = i
-                        # print(f'{sub_group} - {i}')
-                    except TypeError:
-                        continue
-        except FileNotFoundError:
-            break
-
-
-
-with open('all_groups.json') as file:
-    dict = json.load(file) 
-
-
-    for line in all_subs.items():
-        group = line[0]
-        id = line[1]
-        dict[group] = line[1]
-                    
-    for line in dict.items():
-        dict[line[0]] = str(line[1])
-        
-
-with open("all_groups.json",'w') as file:
-    json.dump(dict,file,ensure_ascii=False)
 
