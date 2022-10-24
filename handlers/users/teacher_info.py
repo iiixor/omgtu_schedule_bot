@@ -52,7 +52,6 @@ def get_day(today):
     weekday=today.isoweekday()
     week = even_odd()
     weekday_full = str(weekday)+"_"+week
-    print (weekdays[weekday_full])
     return weekdays[weekday_full]
 
 
