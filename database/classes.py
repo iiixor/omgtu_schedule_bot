@@ -2,9 +2,31 @@ import sqlite3
 import time
 import datetime
 import random
+import psycopg2
 
-# from core.find_group import find_group
- 
+# host = "62.113.98.66"
+# user = "postgres"
+# password = "EegF3543667"
+# db_name = "omgtu_data"
+
+# try:
+#     connection = psycopg2.connect(
+#         host = host,
+#         user = user,
+#         password = password,
+#         database = db_name
+#     )
+#     with connection.cursor() as cursor:
+#         pass
+
+
+# except Exception as _ex:
+#     print ("Error while working with PostgresSQL", _ex)
+# finally:
+#     if connection:
+#         cursor.close()
+#         connection.close()
+#         print("PostgresSQl connection closed")
 
 class Database():
 

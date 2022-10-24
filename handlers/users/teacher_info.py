@@ -32,6 +32,28 @@ async def prep(message:types.Message):
     else:
         await message.answer(f'<u><b>В связи с бесплатной подпиской, часть полей недоступно</b></u>,\n<u><b>Подписку можно оформить в личном кабинете</b></u>\n\nВведите фамилию преподавателя или его Ф.И.О:\n\nВ формате: <b>Фамилия.И.О</b>\n\nНапример: <code>Панин.Ю.Н</code>', reply_markup=menu)    
         
+def get_day(today):
+    weekdays = {
+    "1_Верхняя неделя":"2022.10.10",
+    "2_Верхняя неделя":"2022.10.11",
+    "3_Верхняя неделя":"2022.10.12",
+    "4_Верхняя неделя":"2022.10.13",
+    "5_Верхняя неделя":"2022.10.14",
+    "6_Верхняя неделя":"2022.10.15",
+    "7_Верхняя неделя":"2022.10.16",
+    "1_Нижняя неделя":"2022.10.03",
+    "2_Нижняя неделя":"2022.10.04",
+    "3_Нижняя неделя":"2022.10.05",
+    "4_Нижняя неделя":"2022.10.06",
+    "5_Нижняя неделя":"2022.10.07",
+    "6_Нижняя неделя":"2022.10.08",
+    "7_Нижняя неделя":"2022.10.09",
+    }
+    weekday=today.isoweekday()
+    week = even_odd()
+    weekday_full = str(weekday)+"_"+week
+    print (weekdays[weekday_full])
+    return weekdays[weekday_full]
 
 
 @dp.message_handler()
@@ -57,7 +79,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.09'
+    date = '2022.10.10'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -74,7 +96,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.10'
+    date = '2022.10.11'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -91,7 +113,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.11'
+    date = '2022.10.12'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -108,7 +130,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.12'
+    date = '2022.10.13'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -125,7 +147,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.13'
+    date = '2022.10.14'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -142,7 +164,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.14'
+    date = '2022.10.15'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -159,7 +181,7 @@ async def ponedelnik(call:CallbackQuery):
         sub_bool = True
     else:
         sub_bool = False
-    date = '2022.10.15'
+    date = '2022.10.16'
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -273,7 +295,7 @@ async def ponedelnik(call:CallbackQuery):
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '15p'))
 async def ponedelnik(call:CallbackQuery):
     Omsk_hours = today + Omsk_hour
-    Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
+    # Omsk_hours = Omsk_hours.strftime("%Y.%m.%d")
     teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
     sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
@@ -281,6 +303,7 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = Omsk_hours
+    date = get_day(date)
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
@@ -292,7 +315,7 @@ async def ponedelnik(call:CallbackQuery):
 @dp.callback_query_handler(raspisanie_callback_2.filter(pn = '16p'))
 async def ponedelnik(call:CallbackQuery):
     time_tomorrow_Omsk = today + date_time_tomorrow_for_OMSK
-    time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
+    # time_tomorrow_Omsk = time_tomorrow_Omsk.strftime("%Y.%m.%d")
     teacher = database.find_value(path, 'users', call.from_user.id , 'find_teacher')
     sub_format = database.find_value(path, 'users', call.from_user.id , 'sub_format')
     if sub_format == 'Full' or sub_format == "Free_pass":
@@ -300,6 +323,7 @@ async def ponedelnik(call:CallbackQuery):
     else:
         sub_bool = False
     date = time_tomorrow_Omsk
+    date = get_day(date)
     if sub_format == 'Full' or sub_format == "Free_pass":
         text = get_teacher_schedule(teacher, date, sub_bool)
     elif sub_format == 'Free':
